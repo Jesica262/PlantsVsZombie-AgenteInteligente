@@ -5,7 +5,7 @@ import java.util.Random;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
-public class PlantsAgentState extends SearchBasedAgentState {
+public class EstadoPlanta extends SearchBasedAgentState {
 
     private int[][] matriz;
     private int[] posicionPlants;
@@ -13,7 +13,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
     private int cantidadSol;
     private int celdasVisitadas;
 
-    public PlantsAgentState(int[][] m, int row, int col, int s, int z) {
+    public EstadoPlanta(int[][] m, int row, int col, int s, int z) {
         matriz = m;
         posicionPlants = new int[] {row,col};
         posicionInicial = new int[2];
@@ -23,7 +23,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
         celdasVisitadas = 0;
     }
 
-    public PlantsAgentState() {
+    public EstadoPlanta() {
     	
         matriz = new int[5][9];
         posicionPlants = new int[2];
@@ -47,7 +47,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
         newPosition[0] = posicionPlants[0];
         newPosition[1] = posicionPlants[1];
 
-        PlantsAgentState newState = new PlantsAgentState(newmatriz,
+        EstadoPlanta newState = new EstadoPlanta(newmatriz,
                 this.getRowPosition(), this.getColumnPosition(), this.getcantidadSol(), this.getCeldasVisitadas());
 
         return newState;
@@ -56,7 +56,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
     @Override
     public void updateState(Perception p) {
     	
-        PlantsPerception plantsPerception = (PlantsPerception) p;
+        PercepcionPlanta plantsPerception = (PercepcionPlanta) p;
 
         int row = this.getRowPosition();
         int col = this.getColumnPosition();
@@ -108,7 +108,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
     	
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz.length; col++) {
-                matriz[row][col] = PlantsPerception.DESCONOCIDO_PERCEPTION;
+                matriz[row][col] = PercepcionPlanta.DESCONOCIDO_PERCEPTION;
             }
         }
         
@@ -150,11 +150,11 @@ public class PlantsAgentState extends SearchBasedAgentState {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PlantsAgentState))
+        if (!(obj instanceof EstadoPlanta))
             return false;
 
-        int[][] matrizObj = ((PlantsAgentState) obj).getmatriz();
-        int[] positionObj = ((PlantsAgentState) obj).getPosition();
+        int[][] matrizObj = ((EstadoPlanta) obj).getmatriz();
+        int[] positionObj = ((EstadoPlanta) obj).getPosition();
 
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz.length; col++) {
@@ -254,7 +254,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
     public boolean isNoMoreZombie() {
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz.length; col++) {
-                if (matriz[row][col] == PlantsPerception.ENEMIGO_PERCEPTION) {
+                if (matriz[row][col] == PercepcionPlanta.ENEMIGO_PERCEPTION) {
                     return false;
                 }
             }
@@ -274,7 +274,7 @@ public class PlantsAgentState extends SearchBasedAgentState {
 	public boolean isAllmatrizKnown() {
 	    for (int row = 0; row < matriz.length; row++) {
 	        for (int col = 0; col < matriz.length; col++) {
-	            if (matriz[row][col] == PlantsPerception.DESCONOCIDO_PERCEPTION) {
+	            if (matriz[row][col] == PercepcionPlanta.DESCONOCIDO_PERCEPTION) {
 	                return false;
 	            }
 	        }

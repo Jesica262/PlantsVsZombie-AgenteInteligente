@@ -1,8 +1,8 @@
 package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
-import frsf.cidisi.exercise.plantsVsZombies.search.PlantsAgentState;
-import frsf.cidisi.exercise.plantsVsZombies.search.PlantsEnvironmentState;
-import frsf.cidisi.exercise.plantsVsZombies.search.PlantsPerception;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoAmbiente;
+import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -12,7 +12,7 @@ public class AtacarZombie extends SearchAction {
 
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        PlantsAgentState plantsState = (PlantsAgentState) s;
+        EstadoPlanta plantsState = (EstadoPlanta) s;
 
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
@@ -20,7 +20,7 @@ public class AtacarZombie extends SearchAction {
         if ((plantsState.getmatriz()[row][col] == 1) && (plantsState.getcantidadSol() > 30)) {
 
             // There is no more enemy if we fight against it
-            plantsState.setmatrizPosition(row, col, PlantsPerception.VACIO_PERCEPTION);
+            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
             
             return plantsState;
         }
@@ -31,16 +31,16 @@ public class AtacarZombie extends SearchAction {
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        PlantsEnvironmentState environmentState = (PlantsEnvironmentState) est;
-        PlantsAgentState plantsState = ((PlantsAgentState) ast);
+        EstadoAmbiente environmentState = (EstadoAmbiente) est;
+        EstadoPlanta plantsState = ((EstadoPlanta) ast);
 
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 
         if ((environmentState.getMatriz()[row][col] == 1)/* && (plantsState.getCantidadSol()>environmentState.getNivel())*/ ) {
             
-        	environmentState.setMatriz(row, col, PlantsPerception.VACIO_PERCEPTION);
-            plantsState.setmatrizPosition(row, col, PlantsPerception.VACIO_PERCEPTION);
+        	environmentState.setMatriz(row, col, PercepcionPlanta.VACIO_PERCEPTION);
+            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
            // plantsState.setCantidadSol(plantsState.getCantidadSol());
             
             return environmentState;

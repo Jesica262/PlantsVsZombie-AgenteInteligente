@@ -4,22 +4,22 @@ import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 
-public class PlantsEnvironment extends Environment {
+public class PlantaAmbiente extends Environment {
 
-    public PlantsEnvironment() {
+    public PlantaAmbiente() {
         // Crea el estado del entorno
-        this.environmentState = new PlantsEnvironmentState();
+        this.environmentState = new EstadoAmbiente();
     }
 
     @Override
-    public PlantsEnvironmentState getEnvironmentState() {
-        return (PlantsEnvironmentState) super.getEnvironmentState();
+    public EstadoAmbiente getEnvironmentState() {
+        return (EstadoAmbiente) super.getEnvironmentState();
     }
 
     @Override
     public Perception getPercept() {
         // Create a new perception to return
-        PlantsPerception perception = new PlantsPerception();
+        PercepcionPlanta perception = new PercepcionPlanta();
         
         // Get the actual position of the agent to be able to create the
         // perception
@@ -46,15 +46,15 @@ public class PlantsEnvironment extends Environment {
     @Override
     public boolean agentFailed(Action actionReturned) {
 
-        PlantsEnvironmentState plantsEnvironmentState = this.getEnvironmentState();
+        EstadoAmbiente plantsEnvironmentState = this.getEnvironmentState();
 
         int cantidadSoles = plantsEnvironmentState.getCantidadSoles();
         
       //  int posicionZombie = plantsEnvironmentState.getPosicionZombie()[1];
 
-        // El Agente falla cuando la Planta se queda sin Soles
-     //   if (cantidadSoles <= 0 || posicionZombie == 0)
-      //      return true;
+      //   El Agente falla cuando la Planta se queda sin Soles
+       if (cantidadSoles <= 0)
+            return true;
 
         return false;
     }
@@ -62,18 +62,18 @@ public class PlantsEnvironment extends Environment {
     // Metodos especificos para la Planta
     
     public int getMoverArriba(int row, int col) {
-        return ((PlantsEnvironmentState) this.environmentState).getMoverArriba(row, col);
+        return ((EstadoAmbiente) this.environmentState).getMoverArriba(row, col);
     }
 
     public int getMoverAbajo(int row, int col) {
-        return ((PlantsEnvironmentState) this.environmentState).getMoverAbajo(row, col);
+        return ((EstadoAmbiente) this.environmentState).getMoverAbajo(row, col);
     }
 
     public int getMoverDerecha(int row, int col) {
-        return ((PlantsEnvironmentState) this.environmentState).getMoverDerecha(row, col);
+        return ((EstadoAmbiente) this.environmentState).getMoverDerecha(row, col);
     }
 
     public int getMoverIzquierda(int row, int col) {
-        return ((PlantsEnvironmentState) this.environmentState).getMoverIzquierda(row, col);
+        return ((EstadoAmbiente) this.environmentState).getMoverIzquierda(row, col);
     }
 }

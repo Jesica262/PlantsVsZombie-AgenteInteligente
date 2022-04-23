@@ -3,15 +3,14 @@ package frsf.cidisi.exercise.plantsVsZombies.search;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 
-public class PlantsSearchMain {
+public class InicioPlanta {
     
     public static void main(String[] args) throws PrologConnectorException {
-        PlantsAgent plantsAgent = new PlantsAgent();
+        Planta plantsAgent = new Planta();
         
-        PlantsEnvironment plantsEnvironment = new PlantsEnvironment();
+        PlantaAmbiente plantsEnvironment = new PlantaAmbiente();
         
-        SearchBasedAgentSimulator simulator =
-                new SearchBasedAgentSimulator(plantsEnvironment, plantsAgent);
+        SearchBasedAgentSimulator simulator = new SearchBasedAgentSimulator(plantsEnvironment, plantsAgent);
         
         simulator.start();
     }

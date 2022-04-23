@@ -1,8 +1,8 @@
 package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
-import frsf.cidisi.exercise.plantsVsZombies.search.PlantsAgentState;
-import frsf.cidisi.exercise.plantsVsZombies.search.PlantsEnvironmentState;
-import frsf.cidisi.exercise.plantsVsZombies.search.PlantsPerception;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoAmbiente;
+import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -13,7 +13,7 @@ public class MoverDerecha extends SearchAction {
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
 
-        PlantsAgentState plantsState = (PlantsAgentState) s;
+        EstadoPlanta plantsState = (EstadoPlanta) s;
 
      //   plantsState.increaseVisitedCellsCount();
 
@@ -28,9 +28,9 @@ public class MoverDerecha extends SearchAction {
 
         plantsState.setRowPosition(col);
 
-        if (plantsState.getmatrizPosition(row, col) == PlantsPerception.DESCONOCIDO_PERCEPTION) {
+        if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.DESCONOCIDO_PERCEPTION) {
 
-            plantsState.setmatrizPosition(row, col, PlantsPerception.VACIO_PERCEPTION);
+            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
         }
 
         return plantsState;
@@ -42,8 +42,8 @@ public class MoverDerecha extends SearchAction {
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        PlantsEnvironmentState environmentState = (PlantsEnvironmentState) est;
-        PlantsAgentState plantsState = ((PlantsAgentState) ast);
+        EstadoAmbiente environmentState = (EstadoAmbiente) est;
+        EstadoPlanta plantsState = ((EstadoPlanta) ast);
 
       //  plantsState.increaseVisitedCellsCount();
 

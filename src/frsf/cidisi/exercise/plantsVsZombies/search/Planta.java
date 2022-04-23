@@ -17,15 +17,15 @@ import frsf.cidisi.faia.solver.search.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PlantsAgent extends SearchBasedAgent {
+public class Planta extends SearchBasedAgent {
 
-    public PlantsAgent() {
+    public Planta() {
 
         // Objetivo deL Agente
-        PlantsGoal goal = new PlantsGoal();
+        ObjetivoPlanta goal = new ObjetivoPlanta();
 
         // Estado del Agente
-        PlantsAgentState plantsState = new PlantsAgentState();
+        EstadoPlanta plantsState = new EstadoPlanta();
         this.setAgentState(plantsState);
 
         // Creaccion de Operadores
@@ -89,7 +89,7 @@ public class PlantsAgent extends SearchBasedAgent {
             selectedAction =
                     this.getSolver().solve(new Object[]{this.getProblem()});
         } catch (Exception ex) {
-            Logger.getLogger(PlantsAgent.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Return the selected action
