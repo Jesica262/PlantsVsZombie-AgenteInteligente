@@ -16,14 +16,42 @@ public class AtacarZombie extends SearchAction {
 
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
-
-        if ((plantsState.getmatriz()[row][col] == 1) && (plantsState.getcantidadSol() > 30)) {
-
-            // There is no more enemy if we fight against it
-            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
-            
+        
+     
+        if ((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) && 
+        		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO5)) {
+        	
+            plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO5);
             return plantsState;
-        }
+        } 
+        else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO4) &&
+        		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO4))
+        	{
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO4);
+        		return plantsState;
+        	}
+        else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO3) &&
+        		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO3))
+        	{
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO3);
+        		return plantsState;
+        	}else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO2) &&
+            		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO2))
+            	{
+            		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO2);
+            		return plantsState;
+            	}else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO1) &&
+                		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO1))
+                	{
+                		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+                		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO1);
+                		return plantsState;
+                	}
+        
 
         return null;
     }
@@ -33,18 +61,59 @@ public class AtacarZombie extends SearchAction {
 
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
+        
+        int row = plantsState.getRowPosition();
+        int col = plantsState.getColumnPosition();
 
-        int row = environmentState.getPosicionAgente()[0];
-        int col = environmentState.getPosicionAgente()[1];
+        row = environmentState.getPosicionAgente()[0];
+        col = environmentState.getPosicionAgente()[1];
 
-        if ((environmentState.getMatriz()[row][col] == 1)/* && (plantsState.getCantidadSol()>environmentState.getNivel())*/ ) {
+        if ((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) && 
+        		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO5)) {
+        		
+        		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO5);
             
-        	environmentState.setMatriz(row, col, PercepcionPlanta.VACIO_PERCEPTION);
-            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
-           // plantsState.setCantidadSol(plantsState.getCantidadSol());
+        		return environmentState;
+        } 
+        else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO4) &&
+        		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO4))
+        	{
+        		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO4);
+        
+        		return environmentState;
+        	}
+        else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO3) &&
+        		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO3))
+        	{
+        		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO3);
+    
+        		return environmentState;
+        		
+        	}else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO2) &&
+            		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO2))
+            	{
+        			environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        			plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        			plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO2);
+        
+        			return environmentState;
+        			
+            	}else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO1) &&
+                		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO1))
+                	{
+            			environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            			plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            			plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO1);
             
-            return environmentState;
-        }
+            			return environmentState;
+                	}
+
 
         return null;
     }

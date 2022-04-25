@@ -26,11 +26,9 @@ public class PlantaAmbiente extends Environment {
         int row = this.getEnvironmentState().getPosicionAgente()[0];
         int col = this.getEnvironmentState().getPosicionAgente()[1];
 
-        // Set the perception sensors
-        perception.setSensorArriba(this.getMoverArriba(row, col));
-        perception.setSensorIzquierdo(this.getMoverIzquierda(row, col));
-        perception.setSensorDerecho(this.getMoverDerecha(row, col));
-        perception.setSensorAbajo(this.getMoverAbajo(row, col));
+        perception.setSensorFila(this.getFila(row));
+        perception.setSensorColumna(this.getColumna(col));
+        
      //estado del ambiente
         
         
@@ -75,5 +73,13 @@ public class PlantaAmbiente extends Environment {
 
     public int getMoverIzquierda(int row, int col) {
         return ((EstadoAmbiente) this.environmentState).getMoverIzquierda(row, col);
+    }
+    
+    public int[] getFila(int row) {
+    	return ((EstadoAmbiente) this.environmentState).getFila(row);
+    }
+    
+    public int[] getColumna(int col) {
+    	return ((EstadoAmbiente) this.environmentState).getColumna(col);
     }
 }

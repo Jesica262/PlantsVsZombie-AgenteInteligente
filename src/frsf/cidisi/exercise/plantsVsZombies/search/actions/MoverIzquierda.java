@@ -15,27 +15,14 @@ public class MoverIzquierda extends SearchAction {
 
         EstadoPlanta plantsState = (EstadoPlanta) s;
 
-       // plantsState.increaseVisitedCellsCount();
-
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
 
-        if (row == 0) {
-        	row = 8;
-        } else {
-        	row = row - 1;
-        }
+        if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-        plantsState.setRowPosition(row);
-
-        /* The agent can only go left when the cell is not empty */
-        if (plantsState.getmatrizPosition(row, col) != PercepcionPlanta.VACIO_PERCEPTION) {
-
-            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
-
+            plantsState.setRowPosition(row);
             return plantsState;
         }
-
         return null;
     }
 
@@ -44,8 +31,6 @@ public class MoverIzquierda extends SearchAction {
 
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
-
-      //  plantsState.increaseVisitedCellsCount();
 
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
@@ -56,10 +41,11 @@ public class MoverIzquierda extends SearchAction {
         	row = row - 1;
         }
 
-        plantsState.setRowPosition(row);
-
-        environmentState.setPosicionAgente(new int[] {row, col});
-        
+        if(!environmentState.hayZombie(row, col))
+        {
+        	plantsState.setRowPosition(row);
+        	environmentState.setPosicionAgente(new int[] {row, col});
+        }
         return environmentState;
     }
 

@@ -86,7 +86,59 @@ public class EstadoAmbiente extends EnvironmentState {
         return str;
     }
 
-    public int[][] getMatriz() {
+    public int[] getPosicionGirasol() {
+		return posicionGirasol;
+	}
+
+	public void setPosicionGirasol(int[] posicionGirasol) {
+		this.posicionGirasol = posicionGirasol;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getProximoMov() {
+		return proximoMov;
+	}
+
+	public void setProximoMov(int proximoMov) {
+		this.proximoMov = proximoMov;
+	}
+
+	public int getIteracion() {
+		return iteracion;
+	}
+
+	public void setIteracion(int iteracion) {
+		this.iteracion = iteracion;
+	}
+
+	public ArrayList<Zombie> getListZombies() {
+		return listZombies;
+	}
+
+	public void setListZombies(ArrayList<Zombie> listZombies) {
+		this.listZombies = listZombies;
+	}
+
+	public ArrayList<Girasol> getListGirasoles() {
+		return listGirasoles;
+	}
+
+	public void setListGirasoles(ArrayList<Girasol> listGirasoles) {
+		this.listGirasoles = listGirasoles;
+	}
+
+	public void setPosicionZombie(int[] posicionZombie) {
+		this.posicionZombie = posicionZombie;
+	}
+
+	public int[][] getMatriz() {
         return matriz;
     }
 
@@ -154,11 +206,9 @@ public class EstadoAmbiente extends EnvironmentState {
 	   {	
 		   if( !hayGirasol(row, col) )
 		   {
-			   matriz[row][col] = PercepcionPlanta.PERCEPCION_ENEMIGO;
+			   matriz[row][col] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
 		   }
 	   }
-	    	
-	 //  this.setPosLobo(filaLobo, columnaLobo);
 	}
 	
 	public void getMatarZombie(int row, int col)
@@ -183,6 +233,35 @@ public class EstadoAmbiente extends EnvironmentState {
 	
 	public boolean hayGirasol(int row, int col)
 	{
-		return (matriz[row][col]== PercepcionPlanta.PERCEPCION_GIRASOL);
+		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL);
 	}
+	
+	public boolean hayZombie(int row, int col)
+	{
+		return (   matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO1
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO2
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO3
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO4
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5 );
+	}
+	
+	public int[] getFila(int row) {
+		int[] result = new int [8];
+		 
+		for(int i=0;i<8;i++) 
+		{
+			result[i] = matriz[row][i];
+		}
+	        	
+	    return result;
+	}
+	 
+	public int[] getColumna(int col) { 	
+		int[] result = new int [4];
+	    	
+		for(int j=0;j<4;j++) {
+	    	result[j] = matriz[j][col];
+	    }
+	    return result;
+	 }
 }

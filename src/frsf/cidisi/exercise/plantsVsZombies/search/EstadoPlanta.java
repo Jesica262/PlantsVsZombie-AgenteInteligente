@@ -61,44 +61,19 @@ public class EstadoPlanta extends SearchBasedAgentState {
         int row = this.getRowPosition();
         int col = this.getColumnPosition();
 
-        if (col == 0) {
-            col = 4;
-        } else {
-            col = col - 1;
-        }
-        matriz[row][col] = plantsPerception.getSensorIzquierdo();
-
-        row = this.getRowPosition();
-        col = this.getColumnPosition();
-
-        if (col == 8) {
-            col = 0;
-        } else {
-            col = col + 1;
-        }
-        matriz[row][col] = plantsPerception.getSensorDerecho();
-
-        row = this.getRowPosition();
-        col = this.getColumnPosition();
-
-        if (row == 0) {
-            row = 8;
-        } else {
-            row = row - 1;
-        }
-        matriz[row][col] = plantsPerception.getSensorArriba();
-
-
-        row = this.getRowPosition();
-        col = this.getColumnPosition();
-
-        if (row == 4) {
-            row = 0;
-        } else {
-            row = row + 1;
-        }
-        matriz[row][col] = plantsPerception.getSensorAbajo();
+        int [] fila =  plantsPerception.getSensorFila();       
+        int [] columna = plantsPerception.getSensorColumna();
         
+        for(int i=0; i<8; i++) {
+        	this.matriz[row][i] = fila[i];
+        }
+        
+        for(int j=0; j<4; j++) {
+     	   this.matriz[j][col] = columna[j];
+    	}
+         
+        int cantSoles = plantsPerception.getCantidadSol();
+        this.cantidadSol = cantSoles;
     }
 
     @Override
@@ -108,13 +83,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
     	
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz.length; col++) {
-                matriz[row][col] = PercepcionPlanta.DESCONOCIDO_PERCEPTION;
+                matriz[row][col] = PercepcionPlanta.PERCEPCION_DESCONOCIDO;
             }
         }
         
         this.setRowPosition(2);
         this.setColumnPosition(0);
-        this.setcantidadSol(random.nextInt(22)+2);
+        this.setcantidadSol(1);
     }
 
     /**
@@ -122,24 +97,33 @@ public class EstadoPlanta extends SearchBasedAgentState {
      */
     @Override
     public String toString() {
-        String str = "";
+    	  
+    	String str = "";
 
-        str = str + " position=\"(" + getRowPosition() + "," + "" + getColumnPosition() + ")\"";
-        str = str + " cantidadSol=\"" + cantidadSol + "\"\n";
+    	str += "\n Posicion: (" + getRowPosition() + "," + "" + getColumnPosition() + ")\n";
+        str += " Cantidad de Soles: (" + cantidadSol + ")\n";
 
-        str = str + "matriz=\"[ \n";
+        str = str + "[ \n";
         for (int row = 0; row < matriz.length; row++) {
-            str = str + "[ ";
-            for (int col = 0; col < matriz.length; col++) {
+            str += "[ ";
+            for (int col = 0; col < matriz[0].length; col++) {
                 if (matriz[row][col] == -1) {
-                    str = str + "* ";
-                } else {
-                    str = str + matriz[row][col] + " ";
+                    str += "X ";
+                } else if (matriz[row][col] == 0) { 
+                	str +=  "_ ";
+                } else if (matriz[row][col] == 1) {
+                	str += "Z ";
+            	} else if (matriz[row][col] == 2){
+            		str += "S ";
+            	} else if (matriz[row][col] == 3){
+            		str += "G ";
+            	} else {
+            		str += matriz[row][col] + " ";
                 }
             }
             str = str + " ]\n";
         }
-        str = str + " ]\"";
+        str = str + " ]";
 
         return str;
     }
@@ -254,7 +238,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
     public boolean isNoMoreZombie() {
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz.length; col++) {
-                if (matriz[row][col] == PercepcionPlanta.ENEMIGO_PERCEPTION) {
+                if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO) {
                     return false;
                 }
             }
@@ -274,12 +258,17 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	public boolean isAllmatrizKnown() {
 	    for (int row = 0; row < matriz.length; row++) {
 	        for (int col = 0; col < matriz.length; col++) {
-	            if (matriz[row][col] == PercepcionPlanta.DESCONOCIDO_PERCEPTION) {
+	            if (matriz[row][col] == PercepcionPlanta.PERCEPCION_DESCONOCIDO) {
 	                return false;
 	            }
 	        }
 	    }
 	    
 	    return true;
+	}
+	
+	public void incrementarSol()
+	{
+		this.cantidadSol++;
 	}
 }

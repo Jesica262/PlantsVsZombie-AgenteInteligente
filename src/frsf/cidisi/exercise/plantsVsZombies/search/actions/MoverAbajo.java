@@ -20,18 +20,9 @@ public class MoverAbajo extends SearchAction {
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
 
-        // Check the limits of the world
-        if (col == 0) {
-            col = 4;
-        } else {
-            col = col - 1;
-        }
+        if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-        plantsState.setColumnPosition(col);
-
-        if (plantsState.getmatrizPosition(row, col) != PercepcionPlanta.VACIO_PERCEPTION) {
-
-            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
+            plantsState.setColumnPosition(col);
 
             return plantsState;
         }
@@ -45,8 +36,6 @@ public class MoverAbajo extends SearchAction {
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
 
-//        plantsState.increaseVisitedCellsCount();
-
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 
@@ -56,9 +45,11 @@ public class MoverAbajo extends SearchAction {
         	col = col - 1;
         }
 
-        plantsState.setColumnPosition(col);
-
-        environmentState.setPosicionAgente(new int[] {row, col});
+        if(!environmentState.hayZombie(row, col))
+        {
+        	plantsState.setColumnPosition(col);
+        	environmentState.setPosicionAgente(new int[] {row, col});
+        }
         
         return environmentState;
     }

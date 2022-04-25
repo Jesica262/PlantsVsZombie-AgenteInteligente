@@ -15,26 +15,14 @@ public class MoverArriba extends SearchAction {
 
         EstadoPlanta plantsState = (EstadoPlanta) s;
 
-       // plantsState.increaseVisitedCellsCount();
-
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
 
-        if (col == 4) {
-        	col = 0;
-        } else {
-        	col = col + 1;
-        }
+        if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-        plantsState.setColumnPosition(col);
-
-        if (plantsState.getmatrizPosition(row, col) != PercepcionPlanta.VACIO_PERCEPTION) {
-
-            plantsState.setmatrizPosition(row, col, PercepcionPlanta.VACIO_PERCEPTION);
-
+            plantsState.setColumnPosition(col);
             return plantsState;
         }
-
         return null;
     }
 
@@ -43,8 +31,6 @@ public class MoverArriba extends SearchAction {
 
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
-
-       // plantsState.increaseVisitedCellsCount();
 
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
@@ -55,10 +41,11 @@ public class MoverArriba extends SearchAction {
         	col = col + 1;
         }
 
-        plantsState.setColumnPosition(col);
-
-        environmentState.setPosicionAgente(new int[] {row, col});
-        
+        if(!environmentState.hayZombie(row, col))
+        {
+        	plantsState.setColumnPosition(col);
+        	environmentState.setPosicionAgente(new int[] {row, col});
+        }
         return environmentState;
     }
 

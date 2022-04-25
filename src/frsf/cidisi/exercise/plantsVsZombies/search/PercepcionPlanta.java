@@ -10,9 +10,13 @@ public class PercepcionPlanta extends Perception {
 	 
     public static int PERCEPCION_DESCONOCIDO = -1;
     public static int PERCEPCION_VACIO = 0;
-    public static int PERCEPCION_ENEMIGO = 1;
-    public static int PERCEPCION_SOL = 2;
-    public static int PERCEPCION_GIRASOL = 3;
+    public static int PERCEPCION_ENEMIGO1 = 1;
+    public static int PERCEPCION_ENEMIGO2 = 2;
+    public static int PERCEPCION_ENEMIGO3 = 3;
+    public static int PERCEPCION_ENEMIGO4 = 4;
+    public static int PERCEPCION_ENEMIGO5 = 5;
+    public static int PERCEPCION_SOL = 6;
+    public static int PERCEPCION_GIRASOL = 7;
 
     private int[] sensorFila;
     private int[] sensorColumna;
