@@ -1,7 +1,7 @@
 package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
-import frsf.cidisi.exercise.plantsVsZombies.search.EstadoAmbiente;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoJardin;
 import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -15,25 +15,21 @@ public class MoverAbajo extends SearchAction {
 
         EstadoPlanta plantsState = (EstadoPlanta) s;
 
-       // plantsState.increaseVisitedCellsCount(); incrementar para abajo
-
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
 
         if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO) {
 
             plantsState.setColumnPosition(col);
-
             return plantsState;
         }
-
         return null;
     }
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        EstadoAmbiente environmentState = (EstadoAmbiente) est;
+        EstadoJardin environmentState = (EstadoJardin) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
 
         int row = environmentState.getPosicionAgente()[0];
@@ -50,7 +46,6 @@ public class MoverAbajo extends SearchAction {
         	plantsState.setColumnPosition(col);
         	environmentState.setPosicionAgente(new int[] {row, col});
         }
-        
         return environmentState;
     }
 

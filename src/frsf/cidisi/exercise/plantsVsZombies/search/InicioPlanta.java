@@ -8,7 +8,7 @@ public class InicioPlanta {
     public static void main(String[] args) throws PrologConnectorException {
         Planta plantsAgent = new Planta();
         
-        PlantaAmbiente plantsEnvironment = new PlantaAmbiente();
+        Jardin plantsEnvironment = new Jardin();
         
         SearchBasedAgentSimulator simulator = new SearchBasedAgentSimulator(plantsEnvironment, plantsAgent);
         

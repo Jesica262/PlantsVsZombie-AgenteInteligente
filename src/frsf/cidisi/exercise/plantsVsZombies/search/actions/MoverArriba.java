@@ -1,7 +1,7 @@
 package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
-import frsf.cidisi.exercise.plantsVsZombies.search.EstadoAmbiente;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoJardin;
 import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -29,7 +29,7 @@ public class MoverArriba extends SearchAction {
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        EstadoAmbiente environmentState = (EstadoAmbiente) est;
+        EstadoJardin environmentState = (EstadoJardin) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
 
         int row = environmentState.getPosicionAgente()[0];

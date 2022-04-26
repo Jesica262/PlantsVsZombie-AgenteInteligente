@@ -1,7 +1,6 @@
 package frsf.cidisi.exercise.plantsVsZombies.search;
 
 import java.util.Random;
-
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
@@ -12,22 +11,22 @@ public class EstadoPlanta extends SearchBasedAgentState {
     private int[] posicionInicial;
     private int cantidadSol;
     private int celdasVisitadas;
+    private int contadorZombie;
 
-    public EstadoPlanta(int[][] m, int row, int col, int s, int z) {
+    public EstadoPlanta(int[][] m, int row, int col, int s) {
         matriz = m;
         posicionPlants = new int[] {row,col};
         posicionInicial = new int[2];
         posicionInicial[0] = row;
         posicionInicial[1] = col;
         cantidadSol = s;
-        celdasVisitadas = 0;
     }
 
     public EstadoPlanta() {
     	
         matriz = new int[5][9];
         posicionPlants = new int[2];
-        cantidadSol = 0;
+        cantidadSol = 1;
        
         this.initState();
     }
@@ -48,7 +47,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         newPosition[1] = posicionPlants[1];
 
         EstadoPlanta newState = new EstadoPlanta(newmatriz,
-                this.getRowPosition(), this.getColumnPosition(), this.getcantidadSol(), this.getCeldasVisitadas());
+                this.getRowPosition(), this.getColumnPosition(), this.cantidadSol);
 
         return newState;
     }
@@ -60,18 +59,46 @@ public class EstadoPlanta extends SearchBasedAgentState {
 
         int row = this.getRowPosition();
         int col = this.getColumnPosition();
+        
+        // Muestra la información que se encuentra en la fila y columna.
+        
+        int [] filaDerecha =  plantsPerception.getSensorFilaDerecha();      
+        int [] filaIzquierda = plantsPerception.getSensorColumnaAbajo();
+        int [] columnaArriba = plantsPerception.getSensorColumnaArriba();
+        int [] columnaAbajo = plantsPerception.getSensorColumnaAbajo();
+        
+    	int i = col;
 
-        int [] fila =  plantsPerception.getSensorFila();       
-        int [] columna = plantsPerception.getSensorColumna();
-        
-        for(int i=0; i<8; i++) {
-        	this.matriz[row][i] = fila[i];
-        }
-        
-        for(int j=0; j<4; j++) {
-     	   this.matriz[j][col] = columna[j];
-    	}
-         
+		for (Integer valor : filaDerecha) 
+		{ 
+			matriz[row][i] = valor.intValue();
+			i++;
+		}
+
+		i = col;
+		
+		for (Integer valor : filaIzquierda) 
+		{ 
+			matriz[row][i] = valor.intValue();
+			i--;
+		}
+
+		i = row;
+
+		for (Integer valor : columnaArriba) 
+		{ 
+			matriz[i][col] = valor.intValue();
+			i++;
+		}
+
+		i = row;
+		
+		for (Integer valor : columnaAbajo) 
+		{ 
+			matriz[i][col] = valor.intValue();
+			i--;
+		}
+		
         int cantSoles = plantsPerception.getCantidadSol();
         this.cantidadSol = cantSoles;
     }
@@ -82,7 +109,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
     	Random random = new Random();
     	
         for (int row = 0; row < matriz.length; row++) {
-            for (int col = 0; col < matriz.length; col++) {
+            for (int col = 0; col < matriz[0].length; col++) {
                 matriz[row][col] = PercepcionPlanta.PERCEPCION_DESCONOCIDO;
             }
         }
@@ -108,15 +135,23 @@ public class EstadoPlanta extends SearchBasedAgentState {
             str += "[ ";
             for (int col = 0; col < matriz[0].length; col++) {
                 if (matriz[row][col] == -1) {
-                    str += "X ";
+                    str += "x ";
                 } else if (matriz[row][col] == 0) { 
                 	str +=  "_ ";
                 } else if (matriz[row][col] == 1) {
-                	str += "Z ";
-            	} else if (matriz[row][col] == 2){
-            		str += "S ";
-            	} else if (matriz[row][col] == 3){
-            		str += "G ";
+                	str += "z1 ";
+                } else if (matriz[row][col] == 2) {
+                	str += "z2 ";
+                } else if (matriz[row][col] == 3) {
+                	str += "z3 ";
+                } else if (matriz[row][col] == 4) {
+                	str += "z4 ";
+                } else if (matriz[row][col] == 5) {
+                	str += "z5 ";
+            	} else if (matriz[row][col] == 6){
+            		str += "* ";
+            	} else if (matriz[row][col] == 7){
+            		str += "o ";
             	} else {
             		str += matriz[row][col] + " ";
                 }
@@ -235,10 +270,14 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		this.celdasVisitadas = celdasVisitadas;
 	}
 
-    public boolean isNoMoreZombie() {
+   public boolean isNoMoreZombie() {
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz.length; col++) {
-                if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO) {
+                if ( matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO1
+        				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO2
+        				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO3
+        				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO4
+        				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5 ) {
                     return false;
                 }
             }
@@ -271,4 +310,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	{
 		this.cantidadSol++;
 	}
+
+	public int getContadorZombie() {
+		return contadorZombie;
+	}
+
+	public void setContadorZombie(int contadorZombie) {
+		this.contadorZombie = contadorZombie;
+	}
+	
 }

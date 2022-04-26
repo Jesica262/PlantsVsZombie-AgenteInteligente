@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class EstadoAmbiente extends EnvironmentState {
+public class EstadoJardin extends EnvironmentState {
 
     private int[][] matriz;
     private int[] posicionAgente;
@@ -12,16 +12,15 @@ public class EstadoAmbiente extends EnvironmentState {
     private int[] posicionGirasol;
     private int cantidadSoles;
     private int tipo;
-    private int proximoMov;
-    private int iteracion = 0;
+    private int contadorZombie = 0;
     private ArrayList<Zombie> listZombies;
     private ArrayList<Girasol> listGirasoles;
 
-    public EstadoAmbiente(int[][] m) {
+    public EstadoJardin(int[][] m) {
     	matriz = m;
     }
 
-    public EstadoAmbiente() {
+    public EstadoJardin() {
     	matriz = new int[5][9];
     	this.initState();
     }
@@ -48,36 +47,74 @@ public class EstadoAmbiente extends EnvironmentState {
         }
         
         //random 5 a 20, Para Cantidad de Zombies que van a aparecer.
-        for (int cantZombie = 0; cantZombie < rangoList; cantZombie++)
-        {
+        contadorZombie = rangoList;
+        
+       // for (int cantZombie = 0; cantZombie < rangoList; cantZombie++)
+        //{
         	//tipo = (int) (Math.random()*5+1);
         	//proximoMov = (int) (Math.random()*3+1);
         	//listZombies.add(new Zombie(tipo, proximoMov));     
-        	listZombies.add(new Zombie(1, 3)); 
-        }
+        //	listZombies.add(null);
+     //   }
      
         this.setPosicionAgente(new int[] {2,0});
         //(int) Math.random()*19+2
         this.setCantidadSoles(5);
-   
-      //  int filaLobo = randInt(0, 8);
-      //  int columnaLobo = randInt(0, 13);
         
-      //  this.setPosLobo(filaLobo, columnaLobo);
+        int filaZombie =8;
+        int colZombie = numeroRandom(0,4);
+        
+        this.setPosicionZombie(filaZombie, colZombie);
+   
     }
+    
+    //actualizar
 
 	/**
      * String representation of the real world state.
      */
     @Override
     public String toString() {
+    	
         String str = "";
 
+        str += "\n Posicion Planta: (" + this.posicionAgente[0] + "," + this.posicionAgente[1] + ")\n";
+        str += " Cantidad de Soles: (" + this.cantidadSoles + ")\n";
+        str += " Posicion de Zombie/s: (";
+        
+     /*   for (int i=0; i<listZombies.size(); i++)
+		{
+			str += this.listZombies.get(i);
+		}*/
+        
+        str += ")\n";
+        
         str = str + "[ \n";
+        
         for (int row = 0; row < matriz.length; row++) {
-            str = str + "[ ";
-            for (int col = 0; col < matriz.length; col++) {
-                str = str + matriz[row][col] + " ";
+            str += "[ ";
+            for (int col = 0; col < matriz[0].length; col++) {
+                if (matriz[row][col] == -1) {
+                    str += "x ";
+                } else if (matriz[row][col] == 0) { 
+                	str +=  "_ ";
+                } else if (matriz[row][col] == 1) {
+                	str += "z1 ";
+                } else if (matriz[row][col] == 2) {
+                	str += "z2 ";
+                } else if (matriz[row][col] == 3) {
+                	str += "z3 ";
+                } else if (matriz[row][col] == 4) {
+                	str += "z4 ";
+                } else if (matriz[row][col] == 5) {
+                	str += "z5 ";
+            	} else if (matriz[row][col] == 6){
+            		str += "* ";
+            	} else if (matriz[row][col] == 7){
+            		str += "o ";
+            	} else {
+            		str += matriz[row][col] + " ";
+                }
             }
             str = str + " ]\n";
         }
@@ -85,7 +122,7 @@ public class EstadoAmbiente extends EnvironmentState {
 
         return str;
     }
-
+    
     public int[] getPosicionGirasol() {
 		return posicionGirasol;
 	}
@@ -102,30 +139,6 @@ public class EstadoAmbiente extends EnvironmentState {
 		this.tipo = tipo;
 	}
 
-	public int getProximoMov() {
-		return proximoMov;
-	}
-
-	public void setProximoMov(int proximoMov) {
-		this.proximoMov = proximoMov;
-	}
-
-	public int getIteracion() {
-		return iteracion;
-	}
-
-	public void setIteracion(int iteracion) {
-		this.iteracion = iteracion;
-	}
-
-	public ArrayList<Zombie> getListZombies() {
-		return listZombies;
-	}
-
-	public void setListZombies(ArrayList<Zombie> listZombies) {
-		this.listZombies = listZombies;
-	}
-
 	public ArrayList<Girasol> getListGirasoles() {
 		return listGirasoles;
 	}
@@ -134,8 +147,9 @@ public class EstadoAmbiente extends EnvironmentState {
 		this.listGirasoles = listGirasoles;
 	}
 
-	public void setPosicionZombie(int[] posicionZombie) {
-		this.posicionZombie = posicionZombie;
+	public void setPosicionZombie(int row, int col) {
+		this.posicionZombie[0] = row;
+		this.posicionZombie[1] = col;
 	}
 
 	public int[][] getMatriz() {
@@ -245,23 +259,67 @@ public class EstadoAmbiente extends EnvironmentState {
 				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5 );
 	}
 	
-	public int[] getFila(int row) {
-		int[] result = new int [8];
+	public int[] getDerecha(int row, int col) {
+		
+		int[] result = new int[] {};
 		 
-		for(int i=0;i<8;i++) 
+		for(int i=this.posicionAgente[0]; i<8; i++)
 		{
-			result[i] = matriz[row][i];
+			if(matriz[row][i] != PercepcionPlanta.PERCEPCION_VACIO)
+			{
+				result[i] = matriz[row][i];
+				break;
+			}
 		}
 	        	
 	    return result;
 	}
 	 
-	public int[] getColumna(int col) { 	
-		int[] result = new int [4];
-	    	
-		for(int j=0;j<4;j++) {
-	    	result[j] = matriz[j][col];
-	    }
+	public int[] getIzquierda(int row, int col) {
+		
+		int[] result = new int[] {};
+		 
+		for(int i=this.posicionAgente[0]; i>0; i--)
+		{
+			if(matriz[row][i] != PercepcionPlanta.PERCEPCION_VACIO)
+			{
+				result[i] = matriz[row][i];
+				break;
+			}
+		}
+	        	
 	    return result;
-	 }
+	}
+	
+	public int[] getArriba(int row, int col) {
+		
+		int[] result = new int[] {};
+		 
+		for(int i=this.posicionAgente[1]; i<4; i++)
+		{
+			if(matriz[i][col] != PercepcionPlanta.PERCEPCION_VACIO)
+			{
+				result[i] = matriz[i][col];
+				break;
+			}
+		}
+	        	
+	    return result;
+	}
+	
+	public int[] getAbajo(int row, int col) {
+		
+		int[] result = new int[] {};
+		 
+		for(int i=this.posicionAgente[1]; i>4; i--)
+		{
+			if(matriz[i][col] != PercepcionPlanta.PERCEPCION_VACIO)
+			{
+				result[i] = matriz[i][col];
+				break;
+			}
+		}
+	        	
+	    return result;
+	}
 }

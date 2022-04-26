@@ -1,5 +1,6 @@
 package frsf.cidisi.exercise.plantsVsZombies.search;
 
+import java.util.ArrayList;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -18,8 +19,11 @@ public class PercepcionPlanta extends Perception {
     public static int PERCEPCION_SOL = 6;
     public static int PERCEPCION_GIRASOL = 7;
 
-    private int[] sensorFila;
-    private int[] sensorColumna;
+    private int[] sensorFilaDerecha;
+    private int[] sensorFilaIzquierda;
+    private int[] sensorColumnaArriba;
+    private int[] sensorColumnaAbajo;
+	
     private int cantidadSol;
 
     public PercepcionPlanta() {
@@ -35,34 +39,54 @@ public class PercepcionPlanta extends Perception {
      * This method is used to setup the perception.s
      */
     @Override
-    public void initPerception(Agent agent, Environment environment) {
-        Planta planta = (Planta) agent;
-        PlantaAmbiente plantaAmbiente = (PlantaAmbiente) environment;
-        EstadoAmbiente estadoAmbiente = plantaAmbiente.getEnvironmentState();
+    public void initPerception(Environment environment) {
+
+        Jardin plantaAmbiente = (Jardin) environment;
+        EstadoJardin estadoAmbiente = plantaAmbiente.getEnvironmentState();
 
         int row = estadoAmbiente.getPosicionAgente()[0];
         int col = estadoAmbiente.getPosicionAgente()[1];
 
-        this.setSensorFila(estadoAmbiente.getFila(row));
-        this.setSensorColumna(estadoAmbiente.getColumna(col));
+        /* TODO  Preguntar si esta bien tomar toda la columna */
+        this.setSensorFilaDerecha(estadoAmbiente.getDerecha(row,col));
+        this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
+        this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
+        this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
+		
+        //actualizar estado
         this.setCantidadSol(estadoAmbiente.getCantidadSoles());
     }
 
-
-	public int[] getSensorFila() {
-		return sensorFila;
+	public int[] getSensorFilaDerecha() {
+		return sensorFilaDerecha;
 	}
 
-	public void setSensorFila(int[] sensorFila) {
-		this.sensorFila = sensorFila;
+	public void setSensorFilaDerecha(int[] sensorFilaDerecha) {
+		this.sensorFilaDerecha = sensorFilaDerecha;
 	}
 
-	public int[] getSensorColumna() {
-		return sensorColumna;
+	public int[] getSensorFilaIzquierda() {
+		return sensorFilaIzquierda;
 	}
 
-	public void setSensorColumna(int[] sensorColumna) {
-		this.sensorColumna = sensorColumna;
+	public void setSensorFilaIzquierda(int[] sensorFilaIzquierda) {
+		this.sensorFilaIzquierda = sensorFilaIzquierda;
+	}
+
+	public int[] getSensorColumnaArriba() {
+		return sensorColumnaArriba;
+	}
+
+	public void setSensorColumnaArriba(int[] sensorColumnaArriba) {
+		this.sensorColumnaArriba = sensorColumnaArriba;
+	}
+
+	public int[] getSensorColumnaAbajo() {
+		return sensorColumnaAbajo;
+	}
+
+	public void setSensorColumnaAbajo(int[] sensorColumnaAbajo) {
+		this.sensorColumnaAbajo = sensorColumnaAbajo;
 	}
 
 	public int getCantidadSol() {
@@ -73,6 +97,13 @@ public class PercepcionPlanta extends Perception {
 		this.cantidadSol = cantidadSol;
 	}
 
+	@Override
+	public void initPerception(Agent agent, Environment environment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*
 	@Override
     public String toString() {
 
@@ -89,10 +120,18 @@ public class PercepcionPlanta extends Perception {
 	    	} else if (this.sensorFila[i] == 0) {
 	    		str = str + "_ ";
 	    	} else if (this.sensorFila[i] == 1) {
-	    		str = str + "Z ";
+	    		str = str + "Z1 ";
 	    	} else if (this.sensorFila[i] == 2) {
-	    		str = str + "S ";
+	    		str = str + "Z2 ";
 	    	} else if (this.sensorFila[i] == 3) {
+	    		str = str + "Z3 ";
+	    	} else if (this.sensorFila[i] == 4) {
+	    		str = str + "Z4 ";
+	    	} else if (this.sensorFila[i] == 5) {
+	    		str = str + "Z5 ";
+	    	} else if (this.sensorFila[i] == 6) {
+	    		str = str + "S ";
+	    	} else if (this.sensorFila[i] == 7) {
 	    		str = str + "G ";
 	    	}
 			
@@ -107,10 +146,18 @@ public class PercepcionPlanta extends Perception {
 	    	} else if (this.sensorColumna[j] == 0) {
 	    		str = str + " |_| \n";
 	    	} else if (this.sensorColumna[j] == 1) {
-	    		str = str + " |Z| \n";
+	    		str = str + " |Z1| \n";
 	    	} else if (this.sensorColumna[j] == 2) {
-	    		str = str + " |S| \n";
+	    		str = str + " |Z2| \n";
 	    	} else if (this.sensorColumna[j] == 3) {
+	    		str = str + " |Z3| \n";
+	    	} else if (this.sensorColumna[j] == 4) {
+	    		str = str + " |Z4| \n";
+	    	} else if (this.sensorColumna[j] == 5) {
+	    		str = str + " |Z5| \n";
+	    	} else if (this.sensorColumna[j] == 6) {
+	    		str = str + " |S| \n";
+	    	} else if (this.sensorColumna[j] == 7) {
 	    		str = str + " |G| \n";
 	    	}
 	    	
@@ -118,5 +165,5 @@ public class PercepcionPlanta extends Perception {
 	    str = str + " ]\n";
 	    
 	    return str;
-    }
+    }*/
 }

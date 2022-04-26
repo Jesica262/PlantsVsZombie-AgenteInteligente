@@ -1,7 +1,7 @@
 package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
-import frsf.cidisi.exercise.plantsVsZombies.search.EstadoAmbiente;
+import frsf.cidisi.exercise.plantsVsZombies.search.EstadoJardin;
 import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -22,6 +22,7 @@ public class AtacarZombie extends SearchAction {
         		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO5)) {
         	
             plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
             plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO5);
             return plantsState;
         } 
@@ -29,6 +30,7 @@ public class AtacarZombie extends SearchAction {
         		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO4))
         	{
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        	    plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO4);
         		return plantsState;
         	}
@@ -36,18 +38,21 @@ public class AtacarZombie extends SearchAction {
         		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO3))
         	{
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        	    plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO3);
         		return plantsState;
         	}else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO2) &&
             		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO2))
             	{
             		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            	    plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
             		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO2);
             		return plantsState;
             	}else if((plantsState.getmatriz()[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO1) &&
                 		(plantsState.getcantidadSol() > PercepcionPlanta.PERCEPCION_ENEMIGO1))
                 	{
                 		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+                		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
                 		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO1);
                 		return plantsState;
                 	}
@@ -59,7 +64,7 @@ public class AtacarZombie extends SearchAction {
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        EstadoAmbiente environmentState = (EstadoAmbiente) est;
+        EstadoJardin environmentState = (EstadoJardin) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
         
         int row = plantsState.getRowPosition();
@@ -73,6 +78,7 @@ public class AtacarZombie extends SearchAction {
         		
         		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO5);
             
         		return environmentState;
@@ -82,6 +88,7 @@ public class AtacarZombie extends SearchAction {
         	{
         		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO4);
         
         		return environmentState;
@@ -91,6 +98,7 @@ public class AtacarZombie extends SearchAction {
         	{
         		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO3);
     
         		return environmentState;
@@ -100,6 +108,7 @@ public class AtacarZombie extends SearchAction {
             	{
         			environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
         			plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        			plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         			plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO2);
         
         			return environmentState;
@@ -109,11 +118,11 @@ public class AtacarZombie extends SearchAction {
                 	{
             			environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
             			plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            			plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
             			plantsState.setCantidadSol(plantsState.getcantidadSol() - PercepcionPlanta.PERCEPCION_ENEMIGO1);
             
             			return environmentState;
                 	}
-
 
         return null;
     }

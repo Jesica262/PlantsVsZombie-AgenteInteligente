@@ -19,6 +19,12 @@ import java.util.logging.Logger;
 
 public class Planta extends SearchBasedAgent {
 
+	public static EstadoPlanta estadoAnterior;
+	public static EstadoPlanta estadoSiguienteAlRepetido;
+	public static boolean seEvitoAccion = false;
+	public static boolean accionMediante = false;
+	public static boolean comprobarEstadoRepetido = false;
+	
     public Planta() {
 
         // Objetivo deL Agente
@@ -47,33 +53,9 @@ public class Planta extends SearchBasedAgent {
     @Override
     public Action selectAction() {
 
-        // Crea la estrategia de Busquedad
+    	// Crea la estrategia de Busquedad en Profundidad
         DepthFirstSearch strategy = new DepthFirstSearch();
-
-        /**
-         * Otros tipos de estrategias
-         * 
-         * Depth First Search:
-         * DepthFirstSearch strategy = new DepthFirstSearch();
-         * 
-         * Breath First Search:
-         * BreathFirstSearch strategy = new BreathFirstSearch();
-         * 
-         * Uniform Cost:
-         * IStepCostFunction costFunction = new CostFunction();
-         * UniformCostSearch strategy = new UniformCostSearch(costFunction);
-         * 
-         * A Star Search:
-         * IStepCostFunction cost = new CostFunction();
-         * IEstimatedCostFunction heuristic = new Heuristic();
-         * AStarSearch strategy = new AStarSearch(cost, heuristic);
-         * 
-         * Greedy Search:
-         * IEstimatedCostFunction heuristic = new Heuristic();
-         * GreedySearch strategy = new GreedySearch(heuristic);
-         */
-
-        // Crea un objeto de búsqueda con la estrategia
+        
         Search searchSolver = new Search(strategy);
 
         /* Generate an XML file with the search tree. It can also be generated
@@ -91,9 +73,19 @@ public class Planta extends SearchBasedAgent {
         } catch (Exception ex) {
             Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+		if(selectedAction == null && ((EstadoPlanta) this.getAgentState()).getCantidadSol() == 1) {
 
-        // Return the selected action
-        return selectedAction;
+			((EstadoPlanta) this.getAgentState()).setCantidadSol(0);
+		}
+		else 
+			if(comprobarEstadoRepetido && seEvitoAccion) {
+				seEvitoAccion = false;
+				estadoSiguienteAlRepetido = (EstadoPlanta) ((EstadoPlanta) this.getAgentState()).clone();
+			} 
+
+		// Return the selected action
+		return selectedAction;
     }
 
     /**
