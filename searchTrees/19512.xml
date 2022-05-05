@@ -1,0 +1,19 @@
+<Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (2)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha></Nodonull>

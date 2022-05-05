@@ -19,17 +19,16 @@ public class PercepcionPlanta extends Perception {
     public static int PERCEPCION_SOL = 6;
     public static int PERCEPCION_GIRASOL = 7;
 
-    private int[] sensorFilaDerecha;
-    private int[] sensorFilaIzquierda;
-    private int[] sensorColumnaArriba;
-    private int[] sensorColumnaAbajo;
+    private ArrayList<Integer> sensorFilaDerecha;
+    private ArrayList<Integer> sensorFilaIzquierda;
+    private ArrayList<Integer> sensorColumnaArriba;
+    private ArrayList<Integer> sensorColumnaAbajo;
 	
     private int cantidadSol;
+    private int contZombie;
+    private int zombieTotal;
 
-    public PercepcionPlanta() {
-    	
-    	cantidadSol = 1;
-    }
+    public PercepcionPlanta() {}
     
     public PercepcionPlanta(Agent agent, Environment environment) {
         super(agent, environment);
@@ -49,44 +48,54 @@ public class PercepcionPlanta extends Perception {
 
         /* TODO  Preguntar si esta bien tomar toda la columna */
         this.setSensorFilaDerecha(estadoAmbiente.getDerecha(row,col));
-        this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
-        this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
-        this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
+    //    this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
+    //    this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
+    //    this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
 		
         //actualizar estado
         this.setCantidadSol(estadoAmbiente.getCantidadSoles());
+        this.setContZombie(estadoAmbiente.getContadorZombie());
+        this.setZombieTotal(estadoAmbiente.getZombieTotal());
     }
 
-	public int[] getSensorFilaDerecha() {
+	public ArrayList<Integer> getSensorFilaDerecha() {
 		return sensorFilaDerecha;
 	}
 
-	public void setSensorFilaDerecha(int[] sensorFilaDerecha) {
+	public void setSensorFilaDerecha(ArrayList<Integer> sensorFilaDerecha) {
 		this.sensorFilaDerecha = sensorFilaDerecha;
 	}
 
-	public int[] getSensorFilaIzquierda() {
+	public ArrayList<Integer> getSensorFilaIzquierda() {
 		return sensorFilaIzquierda;
 	}
 
-	public void setSensorFilaIzquierda(int[] sensorFilaIzquierda) {
+	public void setSensorFilaIzquierda(ArrayList<Integer> sensorFilaIzquierda) {
 		this.sensorFilaIzquierda = sensorFilaIzquierda;
 	}
 
-	public int[] getSensorColumnaArriba() {
+	public ArrayList<Integer> getSensorColumnaArriba() {
 		return sensorColumnaArriba;
 	}
 
-	public void setSensorColumnaArriba(int[] sensorColumnaArriba) {
+	public void setSensorColumnaArriba(ArrayList<Integer> sensorColumnaArriba) {
 		this.sensorColumnaArriba = sensorColumnaArriba;
 	}
 
-	public int[] getSensorColumnaAbajo() {
+	public ArrayList<Integer> getSensorColumnaAbajo() {
 		return sensorColumnaAbajo;
 	}
 
-	public void setSensorColumnaAbajo(int[] sensorColumnaAbajo) {
+	public void setSensorColumnaAbajo(ArrayList<Integer> sensorColumnaAbajo) {
 		this.sensorColumnaAbajo = sensorColumnaAbajo;
+	}
+
+	public int getContZombie() {
+		return contZombie;
+	}
+
+	public void setContZombie(int contZombie) {
+		this.contZombie = contZombie;
 	}
 
 	public int getCantidadSol() {
@@ -101,6 +110,14 @@ public class PercepcionPlanta extends Perception {
 	public void initPerception(Agent agent, Environment environment) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getZombieTotal() {
+		return zombieTotal;
+	}
+
+	public void setZombieTotal(int zombieTotal) {
+		this.zombieTotal = zombieTotal;
 	}
 
 	/*

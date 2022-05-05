@@ -17,50 +17,126 @@ public class MoverDerecha extends SearchAction {
 
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
+       
+        
+        //agregar si hay zombie en la misma posicion descontar solZombie*2;
+        if(col < 9) {
+        	
+        	if(plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+            		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
+            {
+            	// Atacar zombie 
+            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col+1))
+            	{
+            		System.out.println("posicion : "+plantsState.getRowPosition()+"  "+plantsState.getColumnPosition()+"\n");
+            		
+            		System.out.println("cantidad sol : "+plantsState.getCantidadSol()+"  "+plantsState.getmatrizPosition(row, col+1)+"\n");
+            		
+            		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
+            		plantsState.setColumnPosition(col+1);
+            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col+1));
+            		//plantsState.setContadorZombie(plantsState.getContadorZombie());
+            	    System.out.println("cantidad cosas : "+plantsState.getCantidadSol()+"  "+plantsState.getContadorZombie()+"\n");
+            		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            		System.out.println("plantaa: "+plantsState);
+            		return plantsState;
+            	}
+            
+            }
+            // Accion TomarSol
+            else if(plantsState.haySol(row,col+1)) {
+            	
+            	plantsState.incrementarSol();
+            	plantsState.setColumnPosition(col+1);
+            	plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            }
+            else if(plantsState.getmatrizPosition(row, col+1) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-        if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO) {
-
-            plantsState.setRowPosition(row);
-            return plantsState;
+                plantsState.setColumnPosition(col+1);
+                System.out.println("hola agente : " + plantsState+"\n");
+                
+            
+                //agregar de plantar planta si tiene soles.
+                return plantsState;
+            }
+        }
+        else
+        {
+        	return null;
         }
         return null;
-    }
+}
+
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
         EstadoJardin environmentState = (EstadoJardin) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
+       
 
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 
-        if (row == 8) {
-        	row = 0;
-        } else {
-        	row = row + 1;
-        }
+        if(col < 9) {
+        	
+        	if(plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+            		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
+            {
+            	// Atacar zombie 
+            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col+1))
+            	{
+            		plantsState.setColumnPosition(col+1);
+            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col+1));
+            		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
+            		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            		environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+                    System.out.println("sol ambiente: "+environmentState.getCantidadSoles()+"  ---  "+plantsState.getCantidadSol()+"/n");
+                    
+            		
+            		return environmentState;
+            	}
+            
+            }
+            // Accion TomarSol
+            else if(plantsState.haySol(row,col+1)) {
+            	
+            	plantsState.incrementarSol();
+            	plantsState.setColumnPosition(col+1);
+            	plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            	environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            }
+            else if(plantsState.getmatrizPosition(row, col+1) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-        if(!environmentState.hayZombie(row, col))
+                plantsState.setColumnPosition(col+1);
+                environmentState.setPosicionAgente(plantsState.getPosicionPlants());
+                environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+              //  plantsState.setCantidadSol(plantsState.getCantidadSol()-1);
+                environmentState.setCantidadSoles(plantsState.getCantidadSol());
+                System.out.println("hola ambiente : \n"+ plantsState.getCantidadSol()+ environmentState.getCantidadSoles()
+                +" -  \n"+plantsState);
+                
+                //agregar de plantar planta si tiene soles.
+                return environmentState;
+            }
+        }
+        else
         {
-        	plantsState.setRowPosition(row);
-        	environmentState.setPosicionAgente(new int[] {row, col});
+        	return null;
         }
-        return environmentState;
-    }
-    /**
-     * See comments in the Eat class.
-     */
-    @Override
-    public Double getCost() {
-        return new Double(0);
+        return null;
     }
 
-    /**
-     * See comments in the Eat class.
-     */
     @Override
     public String toString() {
-        return "GoRight";
+        return "Mover Derecha";
     }
+
+
+	@Override
+	public Double getCost() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

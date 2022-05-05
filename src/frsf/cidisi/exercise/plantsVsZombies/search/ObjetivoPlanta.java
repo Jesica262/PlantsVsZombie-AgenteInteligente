@@ -8,10 +8,11 @@ public class ObjetivoPlanta extends GoalTest {
     @Override
     public boolean isGoalState(AgentState agentState) {
     	
-        if (((EstadoPlanta) agentState).isNoMoreZombie() && ((EstadoPlanta) agentState).tengoSol()) {
-        	
-            return true;
-        }
-        return false;
+    	EstadoPlanta estadoPlanta = (EstadoPlanta) agentState;
+    	
+    	
+    	
+    	return ((estadoPlanta.getContadorZombie()==2) && estadoPlanta.getCantidadSol()>0);
+
     }
 }

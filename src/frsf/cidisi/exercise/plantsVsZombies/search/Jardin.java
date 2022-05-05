@@ -1,8 +1,11 @@
 package frsf.cidisi.exercise.plantsVsZombies.search;
 
+import java.util.ArrayList;
+
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.state.AgentState;
 
 public class Jardin extends Environment {
 
@@ -37,31 +40,29 @@ public class Jardin extends Environment {
         EstadoJardin plantsEnvironmentState = this.getEnvironmentState();
 
         int cantidadSoles = plantsEnvironmentState.getCantidadSoles();
-        
-      //  int posicionZombie = plantsEnvironmentState.getPosicionZombie()[1];
-
+  
       //   El Agente falla cuando la Planta se queda sin Soles
        if (cantidadSoles <= 0)
             return true;
 
         return false;
     }
-
+    
     // Metodos especificos para la Planta
     
-    public int[] getFilaDerecha(int row, int col) {
+    public ArrayList<Integer> getFilaDerecha(int row, int col) {
     	return ((EstadoJardin) this.environmentState).getDerecha(row, col);
     }
     
-    public int[] getFilaIzquierda(int row, int col) {
+    public ArrayList<Integer> getFilaIzquierda(int row, int col) {
     	return ((EstadoJardin) this.environmentState).getIzquierda(row, col);
     }
     
-    public int[] getColumnaArriba(int row, int col) {
+    public ArrayList<Integer> getColumnaArriba(int row, int col) {
     	return ((EstadoJardin) this.environmentState).getArriba(row, col);
     }
     
-    public int[] getColumnaAbajo(int row, int col) {
+    public ArrayList<Integer> getColumnaAbajo(int row, int col) {
     	return ((EstadoJardin) this.environmentState).getAbajo(row, col);
     }
 }

@@ -18,10 +18,41 @@ public class MoverAbajo extends SearchAction {
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
 
-        if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO) {
+        //agregar si hay zombie en la misma posicion descontar solZombie*2;
+        if(row > 0) {
+        	
+        	if(plantsState.getmatrizPosition(row-1, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+            		&& plantsState.getmatrizPosition(row-1, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
+            {
+            	// Atacar zombie 
+            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row-1, col))
+            	{
+            		plantsState.setRowPosition(row-1);
+            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row-1, col));
+            		plantsState.setContadorZombie(plantsState.getContadorZombie()-1);
+            		plantsState.setmatrizPosition(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+            		
+            		return plantsState;
+            	}
+            
+            }
+            // Accion TomarSol
+            else if(plantsState.haySol(row-1,col)) {
+            	
+            	plantsState.incrementarSol();
+            	plantsState.setRowPosition(row-1);
+            	plantsState.setmatrizPosition(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+            }
+            else if(plantsState.getmatrizPosition(row-1, col) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-            plantsState.setColumnPosition(col);
-            return plantsState;
+            	plantsState.setRowPosition(row-1);
+                //agregar de plantar planta si tiene soles.
+                return plantsState;
+            }
+        }
+        else
+        {
+        	return null;
         }
         return null;
     }
@@ -34,19 +65,46 @@ public class MoverAbajo extends SearchAction {
 
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
+     
+        if(row < 5) {
+        	
+        	if(plantsState.getmatrizPosition(row-1, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+            		&& plantsState.getmatrizPosition(row-1, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
+            {
+            	// Atacar zombie 
+            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row-1, col))
+            	{
+            		plantsState.setRowPosition(row-1);
+            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row-1, col));
+            		plantsState.setContadorZombie(plantsState.getContadorZombie()-1);
+            		plantsState.setmatrizPosition(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+            		environmentState.setMatriz(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+            		
+            		return environmentState;
+            	}
+            
+            }
+            // Accion TomarSol
+            else if(plantsState.haySol(row-1, col)) {
+            	
+            	plantsState.incrementarSol();
+            	plantsState.setRowPosition(row-1);
+            	plantsState.setmatrizPosition(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+            	environmentState.setMatriz(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+            }
+            else if(plantsState.getmatrizPosition(row-1, col) == PercepcionPlanta.PERCEPCION_VACIO) {
 
-        if (col == 0) {
-        	col = 4;
-        } else {
-        	col = col - 1;
+            	plantsState.setRowPosition(row-1);
+                environmentState.setMatriz(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
+                //agregar de plantar planta si tiene soles.
+                return environmentState;
+            }
         }
-
-        if(!environmentState.hayZombie(row, col))
+        else
         {
-        	plantsState.setColumnPosition(col);
-        	environmentState.setPosicionAgente(new int[] {row, col});
+        	return null;
         }
-        return environmentState;
+        return null;
     }
 
 	@Override
@@ -57,8 +115,7 @@ public class MoverAbajo extends SearchAction {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		 return "Mover Abajo";
 	}
 }
 

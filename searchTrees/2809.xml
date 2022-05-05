@@ -1,0 +1,289 @@
+<Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (2)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (1)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (2)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (2)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (1)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (2)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (2)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (5)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (5)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z4 _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (5)
+
+| _ _ _ _ z1 x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (5)
+
+| _ _ _ _ z1 x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z1 x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+ </NodoMover Izquierda></Nodonull><Nodonull>Id="0" Action="null" 
+ Posicion: (0,1)
+ Cantidad de Soles: (5)
+
+| _ _ _ _ z1 x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+ Posicion: (0,2)
+ Cantidad de Soles: (4)
+
+| _ _ _ _ z1 x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+ </NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+ Posicion: (0,0)
+ Cantidad de Soles: (0)
+
+| _ _ _ _ z1 x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+| x x x x x x x x x  |
+ </NodoMover Izquierda></Nodonull>
