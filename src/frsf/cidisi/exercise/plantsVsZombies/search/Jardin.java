@@ -37,15 +37,34 @@ public class Jardin extends Environment {
     @Override
     public boolean agentFailed(Action actionReturned) {
 
-        EstadoJardin plantsEnvironmentState = this.getEnvironmentState();
+        EstadoJardin estadoJardin = this.getEnvironmentState();
 
-        int cantidadSoles = plantsEnvironmentState.getCantidadSoles();
+        int[][] posicionZombieFila = estadoJardin.getMatriz();
+        boolean zombieFin = false;
+        
+        // Verifica que el Zombie llega a la columna 0, por lo que el juego termina.
+        
+        for(int i = 0; i<posicionZombieFila.length; i++)
+        {
+        	if( posicionZombieFila[i][0] > 0 && posicionZombieFila[i][0] < 6)
+        	{
+        		zombieFin = true;
+        	}
+        }
+        
+        
+        int cantidadSoles = estadoJardin.getCantidadSoles();
   
-      //   El Agente falla cuando la Planta se queda sin Soles
-       if (cantidadSoles <= 0)
+      //   El Agente falla cuando la Planta se queda sin Soles y si el Zombie llego ala casilla inicial.
+       if ((cantidadSoles <= 0 ) || zombieFin)
             return true;
 
         return false;
+    }
+    
+    @Override
+    public void updateState(AgentState ast, Action action) {
+    	 super.updateState(ast, action);
     }
     
     // Metodos especificos para la Planta

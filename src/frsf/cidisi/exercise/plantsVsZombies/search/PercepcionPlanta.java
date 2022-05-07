@@ -27,6 +27,7 @@ public class PercepcionPlanta extends Perception {
     private int cantidadSol;
     private int contZombie;
     private int zombieTotal;
+    private int celdasVisitadas;
 
     public PercepcionPlanta() {}
     
@@ -56,6 +57,7 @@ public class PercepcionPlanta extends Perception {
         this.setCantidadSol(estadoAmbiente.getCantidadSoles());
         this.setContZombie(estadoAmbiente.getContadorZombie());
         this.setZombieTotal(estadoAmbiente.getZombieTotal());
+        this.setCeldasVisitadas(estadoAmbiente.getCeldasVisitadas());
     }
 
 	public ArrayList<Integer> getSensorFilaDerecha() {
@@ -106,6 +108,14 @@ public class PercepcionPlanta extends Perception {
 		this.cantidadSol = cantidadSol;
 	}
 
+	public int getCeldasVisitadas() {
+		return celdasVisitadas;
+	}
+
+	public void setCeldasVisitadas(int celdasVisitadas) {
+		this.celdasVisitadas = celdasVisitadas;
+	}
+
 	@Override
 	public void initPerception(Agent agent, Environment environment) {
 		// TODO Auto-generated method stub
@@ -120,67 +130,4 @@ public class PercepcionPlanta extends Perception {
 		this.zombieTotal = zombieTotal;
 	}
 
-	/*
-	@Override
-    public String toString() {
-
-		String str = "";
-		
-		str = str + "Cantidad de Soles: " + this.cantidadSol + "\n";
-		
-		str = str + "Sensor Fila: [ ";
-        
-		for( int i = 0; i < this.sensorFila.length; i++ )
-		{
-			if(this.sensorFila[i] == -1) {
-	    		str = str + "X ";
-	    	} else if (this.sensorFila[i] == 0) {
-	    		str = str + "_ ";
-	    	} else if (this.sensorFila[i] == 1) {
-	    		str = str + "Z1 ";
-	    	} else if (this.sensorFila[i] == 2) {
-	    		str = str + "Z2 ";
-	    	} else if (this.sensorFila[i] == 3) {
-	    		str = str + "Z3 ";
-	    	} else if (this.sensorFila[i] == 4) {
-	    		str = str + "Z4 ";
-	    	} else if (this.sensorFila[i] == 5) {
-	    		str = str + "Z5 ";
-	    	} else if (this.sensorFila[i] == 6) {
-	    		str = str + "S ";
-	    	} else if (this.sensorFila[i] == 7) {
-	    		str = str + "G ";
-	    	}
-			
-        }
-	    str = str + " ]\n";
-	    
-    	str = str + "Sensor Columna: [\n";
-    	
-	    for (int j = 0; j < this.sensorColumna.length; j++) {
-	    	if(this.sensorColumna[j] == -1) {
-	    		str = str + " |X| \n";
-	    	} else if (this.sensorColumna[j] == 0) {
-	    		str = str + " |_| \n";
-	    	} else if (this.sensorColumna[j] == 1) {
-	    		str = str + " |Z1| \n";
-	    	} else if (this.sensorColumna[j] == 2) {
-	    		str = str + " |Z2| \n";
-	    	} else if (this.sensorColumna[j] == 3) {
-	    		str = str + " |Z3| \n";
-	    	} else if (this.sensorColumna[j] == 4) {
-	    		str = str + " |Z4| \n";
-	    	} else if (this.sensorColumna[j] == 5) {
-	    		str = str + " |Z5| \n";
-	    	} else if (this.sensorColumna[j] == 6) {
-	    		str = str + " |S| \n";
-	    	} else if (this.sensorColumna[j] == 7) {
-	    		str = str + " |G| \n";
-	    	}
-	    	
-        }
-	    str = str + " ]\n";
-	    
-	    return str;
-    }*/
 }

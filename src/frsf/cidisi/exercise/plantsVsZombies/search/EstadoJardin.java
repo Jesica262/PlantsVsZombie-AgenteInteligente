@@ -12,11 +12,11 @@ public class EstadoJardin extends EnvironmentState {
     private int[] posicionZombie;
     private int[] posicionGirasol;
     private int cantidadSoles;
-    private int tipo;
+    private int celdasVisitadas;
     private int contadorZombie = 0;
     private int zombieTotal;
-    private ArrayList<Zombie> listZombies;
-    private ArrayList<Girasol> listGirasoles;
+    private ArrayList<Integer[]> listZombies;
+    private ArrayList<Integer[]> listGirasoles;
 
     public EstadoJardin(int[][] m) {
     	matriz = m;
@@ -47,9 +47,9 @@ public class EstadoJardin extends EnvironmentState {
             	matriz[row][col] = PercepcionPlanta.PERCEPCION_VACIO;
             }
         }
-    
-        matriz[0][4] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
-        matriz[0][3] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
+
+        matriz[0][5] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
+        matriz[0][2] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
         matriz[1][3] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
         matriz[1][1] = PercepcionPlanta.PERCEPCION_SOL;
     
@@ -65,11 +65,12 @@ public class EstadoJardin extends EnvironmentState {
      //   }
      
         this.setPosicionAgente(new int[] {0,0});
+        this.setPosicionZombie(new int[] {1,0});
         //(int) Math.random()*19+2
-        this.setCantidadSoles(0);
+        this.setCantidadSoles(4);
         this.setContadorZombie(0);
-        this.setZombieTotal(1);
-        
+        this.setZombieTotal(2);
+        this.setCeldasVisitadas(0);
      //   int filaZombie =8;
       //  int colZombie = numeroRandom(0,4);
         
@@ -87,9 +88,9 @@ public class EstadoJardin extends EnvironmentState {
     	
         String str = "";
 
-        str += "\n Posicion Planta: (" + this.posicionAgente[0] + "," + this.posicionAgente[1] + ")\n";
-        str += " Cantidad de Soles: (" + this.cantidadSoles + ")\n";
-        str += " Posicion de Zombie/s: ( \n";
+        str += "\n Posicion Planta: [" + this.posicionAgente[0] + "," + this.posicionAgente[1] + "]\n";
+        str += " Cantidad de Soles: " + this.getCantidadSoles() + "\n";
+        str += " Posicion de Zombies:  \n";
         
      /*   for (int i=0; i<listZombies.size(); i++)
 		{
@@ -97,9 +98,7 @@ public class EstadoJardin extends EnvironmentState {
 		}*/
         str += " Zombie muertos: " + this.getContadorZombie() + "\n";
         str += " Total zombie: " + this.getZombieTotal() + "\n";
-        
-     
-        
+
         str = str + " \n";
         
         for (int row = 0; row < matriz.length; row++) {
@@ -142,23 +141,7 @@ public class EstadoJardin extends EnvironmentState {
 	public void setPosicionGirasol(int[] posicionGirasol) {
 		this.posicionGirasol = posicionGirasol;
 	}
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-
-	public ArrayList<Girasol> getListGirasoles() {
-		return listGirasoles;
-	}
-
-	public void setListGirasoles(ArrayList<Girasol> listGirasoles) {
-		this.listGirasoles = listGirasoles;
-	}
-
+	
 	public void setPosicionZombie(int row, int col) {
 		this.posicionZombie[0] = row;
 		this.posicionZombie[1] = col;
@@ -184,34 +167,6 @@ public class EstadoJardin extends EnvironmentState {
         this.posicionAgente = posicionAgente;
     }
 
-    public int getMoverAbajo(int row, int col) {
-        if (row == 0) {
-            return matriz[4][col];
-        }
-        return matriz[row - 1][col];
-    }
-
-    public int getMoverIzquierda(int row, int col) {
-        if (col == 0) {
-            return matriz[row][8];
-        }
-        return matriz[row][col - 1];
-    }
-
-    public int getMoverDerecha(int row, int col) {
-        if (col == 8) {
-            return matriz[row][0];
-        }
-        return matriz[row][col + 1];
-    }
-
-    public int getMoverArriba(int row, int col) {
-        if (row == 4) {
-            return matriz[0][col];
-        }
-        return matriz[row + 1][col];
-    }
-
 	public int getCantidadSoles() {
 		return cantidadSoles;
 	}
@@ -220,23 +175,10 @@ public class EstadoJardin extends EnvironmentState {
 		this.cantidadSoles = cantidadSoles;
 	}
 	
-	public void getPosicionZombie() {
-		 
-		int row = numeroRandom(0, 8);
-		int col = numeroRandom(0, 4);
-	    	
-		// Comparo posicion de la planta con el Zombie
-	   int[] posicionPlant = this.getPosicionAgente();
-	    	
-	   if((posicionPlant[0] != row && posicionPlant[1] == col) || (posicionPlant[0] == row && posicionPlant[1] != col))
-	   {	
-		   if( !hayGirasol(row, col) )
-		   {
-			   matriz[row][col] = PercepcionPlanta.PERCEPCION_ENEMIGO1;
-		   }
-	   }
+	public int[] getPosicionZombie() {
+		return posicionZombie;
 	}
-	
+
 	public void getMatarZombie(int row, int col)
 	{
 		// Comparo posicion de la planta con el Zombie
@@ -245,12 +187,12 @@ public class EstadoJardin extends EnvironmentState {
 		   if(posicionPlant[0] == row && posicionPlant[1] == col) 
 		   {	
 		   	// Comparo soles de Zombie y soles de Planta
-			   if(this.cantidadSoles > this.tipo)
-			   {
-		   			this.cantidadSoles = this.cantidadSoles - this.tipo;
+			  // if(this.cantidadSoles > this.tipo)
+			   //{
+		   		//	this.cantidadSoles = this.cantidadSoles - this.tipo;
 		   			matriz[row][col] = PercepcionPlanta.PERCEPCION_VACIO;
-			   }
-			   else
+			   //}
+			   //else
 			   {
 				   // Juego terminado
 			   }
@@ -277,17 +219,14 @@ public class EstadoJardin extends EnvironmentState {
 		 
 		for(int i=this.posicionAgente[1]; i<9; i++)
 		{
-			if(matriz[row][i] != PercepcionPlanta.PERCEPCION_VACIO)
-			{
+			if(matriz[row][i] != PercepcionPlanta.PERCEPCION_VACIO) {
 				list.add(matriz[row][i]);
-				System.out.println(" D \n" +list + "   dgsd  "+this.posicionAgente[1]
-						+" matriz "+matriz[row][i]);
-		
 				break;
 			}
+			
 			list.add(matriz[row][i]);
+	
 		}
-		System.out.println(" --- \n" + list);
 	    return list;
 	}
 	 
@@ -301,8 +240,8 @@ public class EstadoJardin extends EnvironmentState {
 			if(matriz[row][i] != PercepcionPlanta.PERCEPCION_VACIO)
 			{
 				list.add(matriz[row][i]);
-				System.out.println(" I \n" +list + "   dgsd  "+this.posicionAgente[1]
-						+" matriz "+matriz[row][i]);
+		//		System.out.println(" I \n" +list + "   dgsd  "+this.posicionAgente[1]
+			//			+" matriz "+matriz[row][i]);
 				break;
 			}
 		}
@@ -333,7 +272,7 @@ public class EstadoJardin extends EnvironmentState {
 	
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		 
-		for(int i=this.posicionAgente[0]; i>5; i--)
+		for(int i=this.posicionAgente[0]; i>0; i--)
 		{
 
 			if(matriz[i][col] != PercepcionPlanta.PERCEPCION_VACIO)
@@ -362,6 +301,36 @@ public class EstadoJardin extends EnvironmentState {
 
 	public void setZombieTotal(int zombieTotal) {
 		this.zombieTotal = zombieTotal;
+	}
+
+	public int getCeldasVisitadas() {
+		return celdasVisitadas;
+	}
+
+	public void setCeldasVisitadas(int celdasVisitadas) {
+		this.celdasVisitadas = celdasVisitadas;
+	}
+
+	public ArrayList<Integer[]> getListZombies() {
+		return listZombies;
+	}
+
+	public void setListZombies(ArrayList<Integer[]> listZombies) {
+		this.listZombies = listZombies;
+	}
+
+	public ArrayList<Integer[]> getListGirasoles() {
+		return listGirasoles;
+	}
+
+	public void setListGirasoles(ArrayList<Integer[]> listGirasoles) {
+		this.listGirasoles = listGirasoles;
+	}
+
+	public void setPosicionZombie(int[] posicionZombie) {
+		this.posicionZombie = posicionZombie;
+		
+		
 	}
 	
 }
