@@ -49,7 +49,7 @@ public class PercepcionPlanta extends Perception {
 
         /* TODO  Preguntar si esta bien tomar toda la columna */
         this.setSensorFilaDerecha(estadoAmbiente.getDerecha(row,col));
-    //    this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
+        this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
     //    this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
     //    this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
 		

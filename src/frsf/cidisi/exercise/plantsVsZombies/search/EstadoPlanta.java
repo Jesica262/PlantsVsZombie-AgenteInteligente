@@ -78,14 +78,14 @@ public class EstadoPlanta extends SearchBasedAgentState {
 			
 		}
 		
-		/*	i = col;
+		i = col;
 		
 		for (Integer valor : plantsPerception.getSensorFilaIzquierda()) 
 		{ 
 			matriz[row][i] = valor.intValue();
 			i--;
 		}
-
+		/*
 		i = row;
 
 		for (Integer valor : plantsPerception.getSensorColumnaArriba()) 

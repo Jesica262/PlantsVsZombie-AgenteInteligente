@@ -21,59 +21,70 @@ public class MoverDerecha extends SearchAction {
         
         //agregar si hay zombie en la misma posicion descontar solZombie*2;
         
-        if(col < 9) {
-        	
-        	if(plantsState.getmatrizPosition(row, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
-            		&& plantsState.getmatrizPosition(row, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
-            {
-        		// Atacar zombie 
-            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col))
-            	{
-            		// Preguntar ala profe
-            		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
-            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col));
-            		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
-       
-            	}
-            }
-        	else if(plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
-            		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
-            {
-            	// Atacar zombie 
-            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col+1))
-            	{
-            		// Preguntar ala profe
-            		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
-            		plantsState.setColumnPosition(col+1);
-            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col+1));
-            		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
-       
-            	}
-            }
-        	
-            // Accion TomarSol
-            else if(plantsState.haySol(row,col+1)) {
-            	
-            	plantsState.incrementarSol();
-            	plantsState.setColumnPosition(col+1);
-            	plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
-          
-            }
-            else if(plantsState.getmatrizPosition(row, col+1) == PercepcionPlanta.PERCEPCION_VACIO) {
-
-                plantsState.setColumnPosition(col+1);
-               
-            }
-        	
-        	plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
-        	
-        	return plantsState;
-        }
-        else
+        if(plantsState.getmatrizPosition(row, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+        		&& plantsState.getmatrizPosition(row, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
         {
-        	return null;
+    		// Atacar zombie 
+        	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col)*2)
+        	{
+        		// Preguntar ala profe
+        		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
+        		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col)*2);
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+            	
+            	return plantsState;
+   
+        	}
         }
+        else if (plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_VACIO)
+        {
+        	if(col<8)
+        	{
+        		if(plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+                		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
+                {
+                	// Atacar zombie 
+                	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col+1))
+                	{
+                		// Preguntar ala profe
+                		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
+                		plantsState.setColumnPosition(col+1);
+                		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col+1));
+                		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+         
+                		plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+                    	//System.out.println("celdas visitadas: "+plantsState.getCeldasVisitadas()+" ---  "+plantsState.getContadorZombie()+"\n");
+                    	return plantsState;
+           
+                	}
+                }
+            	
+                // Accion TomarSol
+                else if(plantsState.haySol(row,col+1)) {
+                	
+                	plantsState.incrementarSol();
+                	plantsState.setColumnPosition(col+1);
+                	plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+                	plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+                	
+                	return plantsState;
+              
+                }
+                else {
+
+                    plantsState.setColumnPosition(col+1);
+                	plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+                	
+                	return plantsState;
+                }
+        	}
+        	else {
+        		return null;
+        	}
+        }
+		return null;
     }
+      
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
@@ -85,24 +96,31 @@ public class MoverDerecha extends SearchAction {
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 
-        if(col < 9) {
-        	
-        	if(plantsState.getmatrizPosition(row, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
-            		&& plantsState.getmatrizPosition(row, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
-            {
-        		// Atacar zombie 
-            	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col))
-            	{
-            		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col));
-            		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
-            		environmentState.setContadorZombie(plantsState.getContadorZombie());
-            		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
-            		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
-            		environmentState.setCantidadSoles(plantsState.getCantidadSol());
-       
-            	}
-            }
-        	else if(plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+    	if(plantsState.getmatrizPosition(row, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+        		&& plantsState.getmatrizPosition(row, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
+        {
+    		// Atacar zombie 
+        	if(plantsState.getCantidadSol() > plantsState.getmatrizPosition(row, col)*2)
+        	{
+        		plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col)*2);
+        		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
+        		environmentState.setContadorZombie(plantsState.getContadorZombie());
+        		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        		plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+            	environmentState.setCeldasVisitadas(plantsState.getCeldasVisitadas());
+            	System.out.println("celdas visitadas: "+plantsState.getCeldasVisitadas()+" ---  "+plantsState.getContadorZombie()+"\n");
+                
+            	return environmentState;
+   
+        	}
+        }
+    	else if (plantsState.getmatrizPosition(row, col) >= PercepcionPlanta.PERCEPCION_VACIO) 
+    	{
+    		if(col < 8) {
+        
+        	 if(plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
             		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
             {
             	// Atacar zombie 
@@ -116,6 +134,11 @@ public class MoverDerecha extends SearchAction {
             		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
             		environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
             		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+            		plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+                	environmentState.setCeldasVisitadas(plantsState.getCeldasVisitadas());
+                	//System.out.println("celdas visitadas: "+plantsState.getCeldasVisitadas()+" ---  "+plantsState.getContadorZombie()+"\n");
+                    
+                	return environmentState;
            
             		
             	}
@@ -128,6 +151,10 @@ public class MoverDerecha extends SearchAction {
             	plantsState.setColumnPosition(col+1);
             	plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
             	environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
+            	plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+            	environmentState.setCeldasVisitadas(plantsState.getCeldasVisitadas());
+            	
+            	return environmentState;
             	
             }
             else if(plantsState.getmatrizPosition(row, col+1) == PercepcionPlanta.PERCEPCION_VACIO) {
@@ -137,17 +164,20 @@ public class MoverDerecha extends SearchAction {
                 environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
                 plantsState.setCantidadSol(plantsState.getCantidadSol());
                 environmentState.setCantidadSoles(plantsState.getCantidadSol());
+            	plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
+            	environmentState.setCeldasVisitadas(plantsState.getCeldasVisitadas());
+            	
+            	return environmentState;
 
             }
-        	plantsState.setCeldasVisitadas(plantsState.getCeldasVisitadas()+1);
-        	environmentState.setCeldasVisitadas(plantsState.getCeldasVisitadas());
-        	
-        	return environmentState;
         }
         else
         {
         	return null;
         }
+    		
+    }
+		return null;
     }
 
     @Override

@@ -3805,4 +3805,30 @@
 | _ _ _ _ _ _ _ _ _  |
 | _ _ _ _ _ _ _ _ _  |
 | _ _ _ _ _ _ _ _ _  |
- </NodoMover Derecha></NodoMover Derecha></Nodonull>
+ </NodoMover Derecha></NodoMover Derecha></Nodonull><Nodonull>Id="0" Action="null" 
+
+ Posicion: [0,4]
+ Cantidad de Soles: 2
+ Zombie muertos: 2
+ Total zombie: 2
+ Cantidad celdas visitadas: 4
+
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+
+ Posicion: [0,4]
+ Cantidad de Soles: 2
+ Zombie muertos: 2
+ Total zombie: 2
+ Cantidad celdas visitadas: 4
+
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Derecha></Nodonull>

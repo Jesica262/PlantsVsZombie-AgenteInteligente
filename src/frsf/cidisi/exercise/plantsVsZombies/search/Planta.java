@@ -41,7 +41,7 @@ public class Planta extends SearchBasedAgent {
       //  operators.addElement(new AtacarZombie());
       //  operators.addElement(new TomarSol());
       //  operators.addElement(new PlantarGirasol());
-      // operators.addElement(new MoverIzquierda());
+       operators.addElement(new MoverIzquierda());
       //  operators.addElement(new MoverArriba());
       //  operators.addElement(new MoverAbajo());
         
