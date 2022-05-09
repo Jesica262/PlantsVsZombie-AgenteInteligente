@@ -10,11 +10,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
     private int[] posicionPlants;
     private int[] posicionInicial;
     private int cantidadSol;
-    private int celdasVisitadas;
+    private int celdasVisitadasX;
+    private int celdasVisitadasY;
     private int contadorZombie;
     private int zombieTotal;
+    private int zombiePercibidos;
 
-    public EstadoPlanta(int[][] m, int row, int col, int s, int cont, int z, int v) {
+    public EstadoPlanta(int[][] m, int row, int col, int s, int cont, int z, int zp, int x, int y) {
         matriz = m;
         posicionPlants = new int[] {row,col};
         posicionInicial = new int[2];
@@ -22,8 +24,10 @@ public class EstadoPlanta extends SearchBasedAgentState {
         posicionInicial[1] = col;
         cantidadSol = s;
         contadorZombie = cont;
-        celdasVisitadas = v;
+        celdasVisitadasX = x;
+        celdasVisitadasY = y;
         zombieTotal = z;
+        zombiePercibidos = zp;
     }
 
     public EstadoPlanta() {
@@ -32,10 +36,20 @@ public class EstadoPlanta extends SearchBasedAgentState {
         posicionPlants = new int[2];
         cantidadSol = 6;
         contadorZombie = 0;
-        celdasVisitadas = 0;
-        zombieTotal = 2;
-       
+        celdasVisitadasX = 0;
+        celdasVisitadasY = 0;
+        zombiePercibidos = 0;
+          
         this.initState();
+    }
+    
+    public static int numeroRandom(int min, int max) {
+        
+        Random random = new Random();
+
+        int randomNum = random.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 
     @Override
@@ -55,7 +69,9 @@ public class EstadoPlanta extends SearchBasedAgentState {
 
         EstadoPlanta newState = new EstadoPlanta(newmatriz, this.getRowPosition(),
         										 this.getColumnPosition(), this.cantidadSol, 
-        										 this.contadorZombie, this.zombieTotal, this.celdasVisitadas);
+        										 this.contadorZombie, this.zombieTotal, 
+        										 this.zombiePercibidos, this.celdasVisitadasX,
+        										 this.celdasVisitadasY);
    
         return newState;
     }
@@ -74,47 +90,70 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		for (Integer valor : plantsPerception.getSensorFilaDerecha()) 
 		{ 
 			matriz[row][i] = valor.intValue();
+		
+			if( matriz[row][i] >= 1 && matriz[row][i] <= 5)
+			{
+				zombiePercibidos++;
+			}
 			i++;
-			
 		}
 		
-		i = col;
-		
+		int j = col;
+			
 		for (Integer valor : plantsPerception.getSensorFilaIzquierda()) 
 		{ 
-			matriz[row][i] = valor.intValue();
-			i--;
+			matriz[row][j] = valor.intValue();
+			
+			if( matriz[row][j] >= 1 && matriz[row][j] <= 5)
+			{
+				zombiePercibidos++;
+			}
+			j--;
 		}
-		/*
-		i = row;
+		
+		int k = row;
 
 		for (Integer valor : plantsPerception.getSensorColumnaArriba()) 
 		{ 
-			matriz[i][col] = valor.intValue();
-			i++;
+			matriz[k][col] = valor.intValue();
+			
+			if(matriz[k][col] >= 1 && matriz[k][col] <= 5)
+			{
+				zombiePercibidos++;
+			}
+			k++;
 		}
 
-		i = row;
+		int m = row;
 		
 		for (Integer valor : plantsPerception.getSensorColumnaAbajo()) 
 		{ 
-			matriz[i][col] = valor.intValue();
-			i--;
-		}*/
+			matriz[m][col] = valor.intValue();
+			
+			if(matriz[m][col] >= 1 && matriz[m][col] <= 5)
+			{
+				zombiePercibidos++;
+			}
+			m--;
+		}
 		
         int cantSoles = this.getCantidadSol();
         int contadorZombie = plantsPerception.getContZombie();
-        int celdas = plantsPerception.getCeldasVisitadas();
-        this.celdasVisitadas = celdas;
+        int celdasx = plantsPerception.getCeldasVisitadasX();
+        int celdasy = plantsPerception.getCeldasVisitadasY();
+        int zombieTotal = plantsPerception.getZombieTotal();
+      //  int zombiePercibido = plantsPerception.getZombiePercibido();
+        this.celdasVisitadasX = celdasx;
+        this.celdasVisitadasX = celdasy;
         this.contadorZombie = contadorZombie;
         this.cantidadSol = cantSoles;
+        this.zombieTotal = zombieTotal;
+       // this.zombiePercibidos = zombiePercibido;
     }
 
     @Override
     public void initState() {
-    	
-    	Random random = new Random();
-    	
+    
         for (int row = 0; row < matriz.length; row++) {
             for (int col = 0; col < matriz[0].length; col++) {
                 matriz[row][col] = PercepcionPlanta.PERCEPCION_VACIO;
@@ -123,7 +162,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         
         this.setRowPosition(0);
         this.setColumnPosition(0);
-        this.setCantidadSol(4);
+        this.setCantidadSol(10);
         this.setContadorZombie(0);
     }
 
@@ -139,7 +178,9 @@ public class EstadoPlanta extends SearchBasedAgentState {
         str += " Cantidad de Soles: " + this.getCantidadSol() + "\n";
         str += " Zombie muertos: " + this.contadorZombie + "\n";
         str += " Total zombie: " + this.getZombieTotal() + "\n";
-        str += " Cantidad celdas visitadas: " + this.getCeldasVisitadas() + "\n";
+        str += " Zombie Percibidos: " + this.getZombiePercibidos() + "\n";
+        str += " Cantidad celdas visitadas en X: " + this.getCeldasVisitadasX() + "\n";
+        str += " Cantidad celdas visitadas en Y: " + this.getCeldasVisitadasY() + "\n";
 
         str = str + "\n";
         for (int row = 0; row < matriz.length; row++) {
@@ -160,10 +201,12 @@ public class EstadoPlanta extends SearchBasedAgentState {
                 	str += "z4 ";
                 } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) {
                 	str += "z5 ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL){
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1){
             		str += "* ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL){
-            		str += "o ";
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2){
+            		str += "** ";
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3){
+            		str += "*** ";
             	} else {
             		str += matriz[row][col] + " ";
                 }
@@ -207,6 +250,11 @@ public class EstadoPlanta extends SearchBasedAgentState {
         return true;
     }
 
+    public int numeroRandomGirasol()
+    {
+    	return numeroRandom(1,3);
+    }
+    
     public int getmatrizPosition(int row, int col) {
         return matriz[row][col];
     }
@@ -267,13 +315,6 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		this.cantidadSol = cantidadSol;
 	}
 
-	public int getCeldasVisitadas() {
-		return celdasVisitadas;
-	}
-
-	public void setCeldasVisitadas(int celdasVisitadas) {
-		this.celdasVisitadas = celdasVisitadas;
-	}
 
    public boolean isNoMoreZombie() {
         for (int row = 0; row < matriz.length; row++) {
@@ -310,7 +351,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
     }
     
     public int getVisitedCellsCount() {
-        return celdasVisitadas;
+        return celdasVisitadasX;
     }
 
 	public boolean isAllmatrizKnown() {
@@ -326,14 +367,30 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	}
 	
 	
-	public void incrementarSol()
+	public int incrementarSol(int row,int col)
 	{
-		this.cantidadSol++;
+		int sol = 0;
+		
+		if(matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1)
+		{
+			sol = 1;
+		}
+		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1)
+		{
+			sol = 2;
+		}
+		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3)
+		{
+			sol = 3;
+		}
+		return sol;
 	}
 	
 	public boolean haySol(int row, int col)
 	{
-		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL);
+		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3);
 	}
 
 	public int getContadorZombie() {
@@ -350,6 +407,30 @@ public class EstadoPlanta extends SearchBasedAgentState {
 
 	public void setZombieTotal(int zombieTotal) {
 		this.zombieTotal = zombieTotal;
+	}
+
+	public int getZombiePercibidos() {
+		return zombiePercibidos;
+	}
+
+	public void setZombiePercibidos(int zombiePercibidos) {
+		this.zombiePercibidos = zombiePercibidos;
+	}
+
+	public int getCeldasVisitadasX() {
+		return celdasVisitadasX;
+	}
+
+	public void setCeldasVisitadasX(int celdasVisitadasX) {
+		this.celdasVisitadasX = celdasVisitadasX;
+	}
+
+	public int getCeldasVisitadasY() {
+		return celdasVisitadasY;
+	}
+
+	public void setCeldasVisitadasY(int celdasVisitadasY) {
+		this.celdasVisitadasY = celdasVisitadasY;
 	}
 	
 }

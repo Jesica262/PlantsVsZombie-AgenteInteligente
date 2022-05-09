@@ -16,8 +16,9 @@ public class PercepcionPlanta extends Perception {
     public static int PERCEPCION_ENEMIGO3 = 3;
     public static int PERCEPCION_ENEMIGO4 = 4;
     public static int PERCEPCION_ENEMIGO5 = 5;
-    public static int PERCEPCION_SOL = 6;
-    public static int PERCEPCION_GIRASOL = 7;
+    public static int PERCEPCION_GIRASOL1 = 6;
+    public static int PERCEPCION_GIRASOL2 = 7;
+    public static int PERCEPCION_GIRASOL3 = 8;
 
     private ArrayList<Integer> sensorFilaDerecha;
     private ArrayList<Integer> sensorFilaIzquierda;
@@ -27,7 +28,9 @@ public class PercepcionPlanta extends Perception {
     private int cantidadSol;
     private int contZombie;
     private int zombieTotal;
-    private int celdasVisitadas;
+    private int celdasVisitadasX;
+    private int celdasVisitadasY;
+    private int zombiePercibido;
 
     public PercepcionPlanta() {}
     
@@ -50,14 +53,16 @@ public class PercepcionPlanta extends Perception {
         /* TODO  Preguntar si esta bien tomar toda la columna */
         this.setSensorFilaDerecha(estadoAmbiente.getDerecha(row,col));
         this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
-    //    this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
-    //    this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
+        this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
+        this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
 		
         //actualizar estado
         this.setCantidadSol(estadoAmbiente.getCantidadSoles());
         this.setContZombie(estadoAmbiente.getContadorZombie());
         this.setZombieTotal(estadoAmbiente.getZombieTotal());
-        this.setCeldasVisitadas(estadoAmbiente.getCeldasVisitadas());
+        this.setCeldasVisitadasX(estadoAmbiente.getCeldasVisitadasX());
+        this.setCeldasVisitadasY(estadoAmbiente.getCeldasVisitadasY());
+        this.setZombiePercibido(estadoAmbiente.getZombiePercibido());
     }
 
 	public ArrayList<Integer> getSensorFilaDerecha() {
@@ -108,12 +113,21 @@ public class PercepcionPlanta extends Perception {
 		this.cantidadSol = cantidadSol;
 	}
 
-	public int getCeldasVisitadas() {
-		return celdasVisitadas;
+
+	public int getCeldasVisitadasX() {
+		return celdasVisitadasX;
 	}
 
-	public void setCeldasVisitadas(int celdasVisitadas) {
-		this.celdasVisitadas = celdasVisitadas;
+	public void setCeldasVisitadasX(int celdasVisitadasX) {
+		this.celdasVisitadasX = celdasVisitadasX;
+	}
+
+	public int getCeldasVisitadasY() {
+		return celdasVisitadasY;
+	}
+
+	public void setCeldasVisitadasY(int celdasVisitadasY) {
+		this.celdasVisitadasY = celdasVisitadasY;
 	}
 
 	@Override
@@ -128,6 +142,14 @@ public class PercepcionPlanta extends Perception {
 
 	public void setZombieTotal(int zombieTotal) {
 		this.zombieTotal = zombieTotal;
+	}
+
+	public int getZombiePercibido() {
+		return zombiePercibido;
+	}
+
+	public void setZombiePercibido(int zombiePercibido) {
+		this.zombiePercibido = zombiePercibido;
 	}
 
 }

@@ -6,7 +6,8 @@ import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 public class InicioPlanta {
     
     public static void main(String[] args) throws PrologConnectorException {
-        Planta plantsAgent = new Planta();
+
+    	Planta plantsAgent = new Planta();
         
         Jardin plantsEnvironment = new Jardin();
         

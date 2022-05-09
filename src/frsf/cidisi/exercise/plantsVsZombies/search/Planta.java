@@ -6,13 +6,10 @@ import java.util.Vector;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
-import frsf.cidisi.exercise.plantsVsZombies.search.actions.AtacarZombie;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverAbajo;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverArriba;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverDerecha;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverIzquierda;
-import frsf.cidisi.exercise.plantsVsZombies.search.actions.PlantarGirasol;
-import frsf.cidisi.exercise.plantsVsZombies.search.actions.TomarSol;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.search.*;
 import java.util.logging.Level;
@@ -38,12 +35,9 @@ public class Planta extends SearchBasedAgent {
         // Creaccion de Operadores
         Vector<SearchAction> operators = new Vector<SearchAction>();
         operators.addElement(new MoverDerecha());
-      //  operators.addElement(new AtacarZombie());
-      //  operators.addElement(new TomarSol());
-      //  operators.addElement(new PlantarGirasol());
-       operators.addElement(new MoverIzquierda());
-      //  operators.addElement(new MoverArriba());
-      //  operators.addElement(new MoverAbajo());
+        operators.addElement(new MoverIzquierda());
+        operators.addElement(new MoverArriba());
+        operators.addElement(new MoverAbajo());
         
         // Inicializando el Problema del Agente
         Problem problem = new Problem(goal, plantsState, operators);

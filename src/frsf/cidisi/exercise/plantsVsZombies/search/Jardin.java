@@ -62,6 +62,8 @@ public class Jardin extends Environment {
         return false;
     }
     
+  
+    
     @Override
     public void updateState(AgentState ast, Action action) {
     	 super.updateState(ast, action);
