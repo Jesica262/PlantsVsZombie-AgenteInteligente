@@ -292,6 +292,7 @@ public class EstadoJardin extends EnvironmentState {
 						+" matriz "+matriz[i][col]);
 				break;
 			}
+			list.add(matriz[row][i]);
 		}
 	        	
 	    return list;
@@ -311,6 +312,7 @@ public class EstadoJardin extends EnvironmentState {
 						+" matriz "+matriz[row][i]);
 				break;
 			}
+			list.add(matriz[row][i]);
 		}
 	        	
 	    return list;

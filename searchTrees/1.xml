@@ -1,0 +1,631 @@
+<Nodonull>Id="0" Action="null" 
+
+ Posicion: [0,1]
+ Cantidad de Soles: 10
+ Zombie muertos: 0
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 0
+ Cantidad celdas visitadas en Y: 0
+
+| _ _ z1 _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="1" Action="Mover Derecha" 
+
+ Posicion: [0,2]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 1
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="4" Action="Mover Derecha" 
+
+ Posicion: [0,3]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 2
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="7" Action="Mover Derecha" 
+
+ Posicion: [0,4]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 3
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="9" Action="Mover Derecha" 
+
+ Posicion: [0,5]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 4
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="11" Action="Mover Derecha" 
+
+ Posicion: [0,6]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 5
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="14" Action="Mover Derecha" 
+
+ Posicion: [0,7]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 6
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="16" Action="Mover Derecha" 
+
+ Posicion: [0,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="18" Action="Mover Arriba" 
+
+ Posicion: [1,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="19" Action="Mover Arriba" 
+
+ Posicion: [2,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="20" Action="Mover Arriba" 
+
+ Posicion: [3,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 3
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="21" Action="Mover Arriba" 
+
+ Posicion: [4,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 4
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Arriba></NodoMover Arriba></NodoMover Arriba></NodoMover Derecha><NodoMover Arriba>Id="17" Action="Mover Arriba" 
+
+ Posicion: [1,7]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 6
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Derecha>Id="22" Action="Mover Derecha" 
+
+ Posicion: [1,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="25" Action="Mover Arriba" 
+
+ Posicion: [2,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="27" Action="Mover Arriba" 
+
+ Posicion: [3,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 3
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Arriba>Id="28" Action="Mover Arriba" 
+
+ Posicion: [4,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 4
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Arriba></NodoMover Arriba><NodoMover Abajo>Id="26" Action="Mover Abajo" 
+
+ Posicion: [0,8]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Abajo></NodoMover Derecha><NodoMover Izquierda>Id="23" Action="Mover Izquierda" 
+
+ Posicion: [1,6]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Izquierda>Id="29" Action="Mover Izquierda" 
+
+ Posicion: [1,5]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 8
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Izquierda>Id="31" Action="Mover Izquierda" 
+
+ Posicion: [1,4]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 9
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Izquierda>Id="33" Action="Mover Izquierda" 
+
+ Posicion: [1,3]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 10
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Izquierda>Id="36" Action="Mover Izquierda" 
+
+ Posicion: [1,2]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 11
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ <NodoMover Izquierda>Id="39" Action="Mover Izquierda" 
+
+ Posicion: [1,1]
+ Cantidad de Soles: 6
+ Zombie muertos: 3
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 12
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda><NodoMover Arriba>Id="40" Action="Mover Arriba" 
+
+ Posicion: [2,2]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 11
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba><NodoMover Abajo>Id="41" Action="Mover Abajo" 
+
+ Posicion: [0,2]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 11
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Abajo></NodoMover Izquierda><NodoMover Arriba>Id="37" Action="Mover Arriba" 
+
+ Posicion: [2,3]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 10
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba><NodoMover Abajo>Id="38" Action="Mover Abajo" 
+
+ Posicion: [0,3]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 10
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Abajo></NodoMover Izquierda><NodoMover Arriba>Id="34" Action="Mover Arriba" 
+
+ Posicion: [2,4]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 9
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba><NodoMover Abajo>Id="35" Action="Mover Abajo" 
+
+ Posicion: [0,4]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 9
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Abajo></NodoMover Izquierda><NodoMover Arriba>Id="32" Action="Mover Arriba" 
+
+ Posicion: [2,5]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 8
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Izquierda><NodoMover Arriba>Id="30" Action="Mover Arriba" 
+
+ Posicion: [2,6]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 7
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Izquierda><NodoMover Arriba>Id="24" Action="Mover Arriba" 
+
+ Posicion: [2,7]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 6
+ Cantidad celdas visitadas en Y: 2
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Arriba></NodoMover Derecha><NodoMover Arriba>Id="15" Action="Mover Arriba" 
+
+ Posicion: [1,6]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 5
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Derecha><NodoMover Izquierda>Id="12" Action="Mover Izquierda" 
+
+ Posicion: [0,4]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 5
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda><NodoMover Arriba>Id="13" Action="Mover Arriba" 
+
+ Posicion: [1,5]
+ Cantidad de Soles: 7
+ Zombie muertos: 2
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 4
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ _ _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Derecha><NodoMover Arriba>Id="10" Action="Mover Arriba" 
+
+ Posicion: [1,4]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 3
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Derecha><NodoMover Arriba>Id="8" Action="Mover Arriba" 
+
+ Posicion: [1,3]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 2
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Derecha><NodoMover Izquierda>Id="5" Action="Mover Izquierda" 
+
+ Posicion: [0,1]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 2
+ Cantidad celdas visitadas en Y: 0
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda><NodoMover Arriba>Id="6" Action="Mover Arriba" 
+
+ Posicion: [1,2]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 1
+ Cantidad celdas visitadas en Y: 1
+
+| * _ _ _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></NodoMover Derecha><NodoMover Izquierda>Id="2" Action="Mover Izquierda" 
+
+ Posicion: [0,0]
+ Cantidad de Soles: 9
+ Zombie muertos: 0
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 1
+ Cantidad celdas visitadas en Y: 0
+
+| * _ z1 _ _ z1 _ _ _  |
+| _ z1 _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Izquierda><NodoMover Arriba>Id="3" Action="Mover Arriba" 
+
+ Posicion: [1,1]
+ Cantidad de Soles: 8
+ Zombie muertos: 1
+ Total zombie: 2
+ Zombie Percibidos: 3
+ Cantidad celdas visitadas en X: 0
+ Cantidad celdas visitadas en Y: 1
+
+| * _ z1 _ _ z1 _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+| _ _ _ _ _ _ _ _ _  |
+ </NodoMover Arriba></Nodonull>

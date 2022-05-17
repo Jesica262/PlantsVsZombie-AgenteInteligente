@@ -49,16 +49,13 @@ public class Jardin extends Environment {
         	if( posicionZombieFila[i][0] > 0 && posicionZombieFila[i][0] < 6)
         	{
         		zombieFin = true;
-        	}
+        	}         
         }
-        
-        
         int cantidadSoles = estadoJardin.getCantidadSoles();
   
       //   El Agente falla cuando la Planta se queda sin Soles y si el Zombie llego ala casilla inicial.
        if ((cantidadSoles <= 0 ) || zombieFin)
             return true;
-
         return false;
     }
     
