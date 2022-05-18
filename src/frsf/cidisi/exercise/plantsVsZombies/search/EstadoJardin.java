@@ -141,13 +141,13 @@ public class EstadoJardin extends EnvironmentState {
                   } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) {
                 	  str += "z5 ";
                   } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL){
-                	  str += "g ";
+                	  str += "G ";
                   } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1){
                 	  str += "* ";
-                  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2){
-                	  str += "** ";
-              	  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3){
-              		  str += "*** ";
+              	  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2){
+              		  str += "** ";
+              	 } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3){
+             		  str += "*** ";
                   } else {
                 	  str += matriz[row][col] + " ";
                   }

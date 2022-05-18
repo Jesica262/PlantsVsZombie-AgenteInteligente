@@ -2,7 +2,6 @@ package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoJardin;
-import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
