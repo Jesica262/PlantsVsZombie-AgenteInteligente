@@ -20,15 +20,12 @@ public class MoverDerecha extends SearchAction {
     	{
         	plantsState.setColumnPosition(col+1);
         	plantsState.setCeldasVisitadasX(plantsState.getCeldasVisitadasX()+1);
-            System.out.println("\n Agente State: "+plantsState+"\n");
+       //     System.out.println("\n Agente State: "+plantsState+"\n");
             
             return plantsState;
          }
-        else {
-        	return null;
-        }
-    }
-      
+        return null;
+    }     
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
@@ -44,13 +41,11 @@ public class MoverDerecha extends SearchAction {
         	plantsState.setColumnPosition(col+1);
         	plantsState.setCeldasVisitadasX(plantsState.getCeldasVisitadasX()+1);
         	environmentState.setPosicionAgente(new int[] {row,col+1});
-            System.out.println("\n Ambiente State: "+environmentState+"\n");
+        //    System.out.println("\n Ambiente State: "+environmentState+"\n");
             
             return environmentState;
          }
-        else {
-        	return null;
-        }   
+        return null;   
     }
 
     @Override

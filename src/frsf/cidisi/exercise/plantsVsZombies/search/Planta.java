@@ -6,6 +6,7 @@ import java.util.Vector;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
+import frsf.cidisi.exercise.plantsVsZombies.search.actions.AtacarZombie;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverAbajo;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverArriba;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverDerecha;
@@ -34,6 +35,7 @@ public class Planta extends SearchBasedAgent {
 
         // Creaccion de Operadores
         Vector<SearchAction> operators = new Vector<SearchAction>();
+        operators.addElement(new AtacarZombie());
         operators.addElement(new MoverDerecha());
    //     operators.addElement(new MoverIzquierda());
    //     operators.addElement(new MoverArriba());

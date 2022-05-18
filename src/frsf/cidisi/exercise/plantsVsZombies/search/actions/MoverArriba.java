@@ -15,15 +15,15 @@ public class MoverArriba extends SearchAction {
             EstadoPlanta plantsState = (EstadoPlanta) s;
 
             int row = plantsState.getRowPosition();
-            int col = plantsState.getColumnPosition();
 
             // Mover Arriba significa que va de la fila 4 a la 0 permaneciendo en la misma columna, por lo que el valor de la fila va disminuyendo 
             if (row >0)
             {
             	plantsState.setRowPosition(row-1);
-            }
-          
-    		return plantsState;
+            	
+            	return plantsState;
+            }         
+    		return null;
         }
           
 
@@ -33,7 +33,6 @@ public class MoverArriba extends SearchAction {
             EstadoJardin environmentState = (EstadoJardin) est;
             EstadoPlanta plantsState = ((EstadoPlanta) ast);
            
-
             int row = environmentState.getPosicionAgente()[0];
             int col = environmentState.getPosicionAgente()[1];
     	
@@ -41,8 +40,10 @@ public class MoverArriba extends SearchAction {
         	{
         		plantsState.setRowPosition(row-1);
         		environmentState.setPosicionAgente(new int[]{row-1, col});
+        		
+        		return environmentState;	
         	}
-        	return environmentState;	
+        	return null;	
         }
     @Override
     public Double getCost() {

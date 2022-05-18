@@ -2,7 +2,6 @@ package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoJardin;
-import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -16,17 +15,16 @@ public class MoverAbajo extends SearchAction {
         EstadoPlanta plantsState = (EstadoPlanta) s;
 
         int row = plantsState.getRowPosition();
-        int col = plantsState.getColumnPosition();
 
         // Mover Abajo significa que va de la fila 0 a la 4 permaneciendo en la misma columna, por lo que el valor de la fila va aumentando 
         if (row < 5)
         {
         	plantsState.setRowPosition(row+1);
-        }
-      
-		return plantsState;
-    }
-      
+        	
+        	return plantsState;
+        }     
+		return null;
+    }     
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
@@ -34,18 +32,18 @@ public class MoverAbajo extends SearchAction {
         EstadoJardin environmentState = (EstadoJardin) est;
         EstadoPlanta plantsState = ((EstadoPlanta) ast);
        
-
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 	
     	if(row < 5) 
     	{
     		plantsState.setRowPosition(row+1);
-    		environmentState.setPosicionAgente(new int[]{row +1, col}); 	
+    		environmentState.setPosicionAgente(new int[]{row +1, col}); 
+    		
+    		return environmentState;
         }
-    	return environmentState;	
+    	return null;	
     }
-
 
 	@Override
 	public Double getCost() {
