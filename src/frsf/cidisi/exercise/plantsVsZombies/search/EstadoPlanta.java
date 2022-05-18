@@ -81,7 +81,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         int row = this.getRowPosition();
         int col = this.getColumnPosition();
         
-        // Muestra la información que se encuentra en la fila y columna.
+        // Muestra la informaciï¿½n que se encuentra en la fila y columna.
     	int i = col;
 
 		for (Integer valor : plantsPerception.getSensorFilaDerecha()) 
@@ -196,11 +196,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
                 	str += "z4 ";
                 } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) {
                 	str += "z5 ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1){
+                } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL){
+            		str += "g ";
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1){
             		str += "* ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2){
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2){
             		str += "** ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3){
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3){
             		str += "*** ";
             	} else {
             		str += matriz[row][col] + " ";
