@@ -81,7 +81,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         int row = this.getRowPosition();
         int col = this.getColumnPosition();
         
-        // Muestra la información que se encuentra en la fila y columna.
+        // Muestra la informaciï¿½n que se encuentra en la fila y columna.
     	int i = col;
 
 		for (Integer valor : plantsPerception.getSensorFilaDerecha()) 

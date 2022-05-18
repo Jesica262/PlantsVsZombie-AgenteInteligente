@@ -16,6 +16,18 @@ public class ObjetivoPlanta extends GoalTest {
     	}
     return false;
  
+/*
+    	if (estadoPlanta.getContadorZombie()== estadoPlanta.getZombieTotal())
+    	{
+    		return true;
+    	}
+    	else if (estadoPlanta.isAllmatrizKnown())
+    	{
+    		return true;
+    	}
+    
+    	return false;
+*/
     }
 }
 
