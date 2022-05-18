@@ -22,9 +22,10 @@ public class MoverAbajo extends SearchAction {
         if (row < 5)
         {
         	plantsState.setRowPosition(row+1);
+        	return plantsState;
         }
       
-		return plantsState;
+		return null;
     }
       
 
@@ -41,9 +42,10 @@ public class MoverAbajo extends SearchAction {
     	if(row < 5) 
     	{
     		plantsState.setRowPosition(row+1);
-    		environmentState.setPosicionAgente(new int[]{row +1, col}); 	
+    		environmentState.setPosicionAgente(new int[]{row +1, col}); 
+    		return environmentState;
         }
-    	return environmentState;	
+    	return null;	
     }
 
 

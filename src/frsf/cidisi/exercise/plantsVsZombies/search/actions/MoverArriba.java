@@ -21,9 +21,10 @@ public class MoverArriba extends SearchAction {
             if (row >0)
             {
             	plantsState.setRowPosition(row-1);
+            	return plantsState;
             }
           
-    		return plantsState;
+    		return null;
         }
           
 
@@ -41,8 +42,9 @@ public class MoverArriba extends SearchAction {
         	{
         		plantsState.setRowPosition(row-1);
         		environmentState.setPosicionAgente(new int[]{row-1, col});
+        		return environmentState;
         	}
-        	return environmentState;	
+        	return null;	
         }
     @Override
     public Double getCost() {
