@@ -163,7 +163,6 @@ public class MoverArriba extends SearchAction {
                 	environmentState.setCeldasVisitadasY(plantsState.getCeldasVisitadasY());
                 	environmentState.setCantidadSoles(plantsState.getCantidadSol());
                 	environmentState.setMatriz(row+1, col, valor);
-
                 	return environmentState;
     			}
     			

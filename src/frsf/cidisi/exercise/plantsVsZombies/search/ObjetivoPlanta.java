@@ -9,8 +9,13 @@ public class ObjetivoPlanta extends GoalTest {
     public boolean isGoalState(AgentState agentState) {
     	
     	EstadoPlanta estadoPlanta = (EstadoPlanta) agentState;
-    
-    	return (estadoPlanta.getContadorZombie() == estadoPlanta.getZombiePercibidos());
+    	
+    	if(estadoPlanta.getColumnPosition()==8)
+    	{
+    		return true;
+    	}
+    return false;
+ 
     }
 }
 

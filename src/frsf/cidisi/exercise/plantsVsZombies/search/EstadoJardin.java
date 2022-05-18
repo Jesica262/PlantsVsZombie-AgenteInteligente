@@ -140,12 +140,14 @@ public class EstadoJardin extends EnvironmentState {
                 	  str += "z4 ";
                   } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) {
                 	  str += "z5 ";
-                  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1){
+                  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL){
+                	  str += "G ";
+                  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1){
                 	  str += "* ";
-                  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2){
-                	  str += "** ";
-              	  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3){
-              		  str += "*** ";
+              	  } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2){
+              		  str += "** ";
+              	 } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3){
+             		  str += "*** ";
                   } else {
                 	  str += matriz[row][col] + " ";
                   }
@@ -229,9 +231,9 @@ public class EstadoJardin extends EnvironmentState {
 	
 	public boolean haySol(int row, int col)
 	{
-		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1
-				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2
-				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3);
+		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3);
 	}
 	
 	public boolean hayZombie(int row, int col)

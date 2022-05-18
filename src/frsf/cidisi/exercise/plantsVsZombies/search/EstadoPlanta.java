@@ -95,7 +95,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 			i++;
 		}
 		
-		int j = col;
+	/*	int j = col;
 			
 		for (Integer valor : plantsPerception.getSensorFilaIzquierda()) 
 		{ 
@@ -133,7 +133,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 			}
 			m--;
 		}
-		
+		*/
         int cantSoles = this.getCantidadSol();
         int contadorZombie = plantsPerception.getContZombie();
         int celdasx = plantsPerception.getCeldasVisitadasX();
@@ -196,11 +196,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
                 	str += "z4 ";
                 } else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_ENEMIGO5) {
                 	str += "z5 ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1){
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL){
+            		str += "G ";
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1){
             		str += "* ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2){
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2){
             		str += "** ";
-            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3){
+            	} else if (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3){
             		str += "*** ";
             	} else {
             		str += matriz[row][col] + " ";
@@ -365,15 +367,15 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	public int incrementarSol(int row,int col)
 	{
 		int sol = 0;		
-		if(matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1)
+		if(matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1)
 		{
 			sol = 1;
 		}
-		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2)
+		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2)
 		{
 			sol = 2;
 		}
-		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3)
+		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3)
 		{
 			sol = 3;
 		}
@@ -382,9 +384,9 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	
 	public boolean haySol(int row, int col)
 	{
-		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL1
-				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL2
-				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_GIRASOL3);
+		return (matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2
+				|| matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3);
 	}
 
 	public int getContadorZombie() {

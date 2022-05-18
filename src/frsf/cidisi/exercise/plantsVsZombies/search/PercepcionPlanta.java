@@ -16,9 +16,10 @@ public class PercepcionPlanta extends Perception {
     public static int PERCEPCION_ENEMIGO3 = 3;
     public static int PERCEPCION_ENEMIGO4 = 4;
     public static int PERCEPCION_ENEMIGO5 = 5;
-    public static int PERCEPCION_GIRASOL1 = 6;
-    public static int PERCEPCION_GIRASOL2 = 7;
-    public static int PERCEPCION_GIRASOL3 = 8;
+    public static int PERCEPCION_GIRASOL = 6;
+    public static int PERCEPCION_SOL1 = 7;
+    public static int PERCEPCION_SOL2 = 8;
+    public static int PERCEPCION_SOL3 = 9;
 
     private ArrayList<Integer> sensorFilaDerecha;
     private ArrayList<Integer> sensorFilaIzquierda;
@@ -52,9 +53,9 @@ public class PercepcionPlanta extends Perception {
 
         /* TODO  Preguntar si esta bien tomar toda la columna */
         this.setSensorFilaDerecha(estadoAmbiente.getDerecha(row,col));
-        this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
-        this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
-        this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
+     //   this.setSensorFilaIzquierda(estadoAmbiente.getIzquierda(row,col));
+     //   this.setSensorColumnaArriba(estadoAmbiente.getArriba(row,col));
+     //   this.setSensorColumnaAbajo(estadoAmbiente.getAbajo(row,col));
 		
         //actualizar estado
         this.setCantidadSol(estadoAmbiente.getCantidadSoles());
