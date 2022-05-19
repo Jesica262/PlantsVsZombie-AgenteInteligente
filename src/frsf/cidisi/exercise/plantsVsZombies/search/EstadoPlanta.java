@@ -238,27 +238,16 @@ public class EstadoPlanta extends SearchBasedAgentState {
         if (!(obj instanceof EstadoPlanta))
             return false;
 
-        int[][] matrizObj = ((EstadoPlanta) obj).getMatriz();
-        int[] positionObj = ((EstadoPlanta) obj).getPosition();
-        int sol = ((EstadoPlanta) obj).getCantidadSol();
+		EstadoPlanta planta = (EstadoPlanta) obj;
 
-        if (!(sol == this.getCantidadSol())) {
-        	return false;
-        }
-        
-        for (int row = 0; row < matriz.length; row++) {
-            for (int col = 0; col < matriz[0].length; col++) {
-                if (matriz[row][col] != matrizObj[row][col]) {
-                    return false;
-                }
-            }
-        }
-
-        if (posicionPlants[0] != positionObj[0] || posicionPlants[1] != positionObj[1]) {
-            return false;
-        }
-        
-        return true;
+		if (this.getCantidadSol() == planta.getCantidadSol()
+				&& this.getPosicionPlants().equals(planta.getPosicionPlants())
+				&& this.getListZombies().size() == planta.getListZombies().size()
+				&& this.getContadorZombie() == planta.getContadorZombie()
+				&& this.getZombieTotal() == (planta.getZombieTotal())) {
+			return true;
+		}
+		return false;
     }
 
     public int numeroRandomGirasol()
