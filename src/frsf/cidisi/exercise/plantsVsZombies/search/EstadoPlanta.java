@@ -1,5 +1,6 @@
 package frsf.cidisi.exercise.plantsVsZombies.search;
 
+import java.util.ArrayList;
 import java.util.Random;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -15,9 +16,10 @@ public class EstadoPlanta extends SearchBasedAgentState {
     private int contadorZombie;
     private int zombieTotal;
     private int zombiePercibidos;
+    private ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
 
     public EstadoPlanta(int[][] m, int row, int col, 
-    		int s, int cont, int z, int zp, int x, int y) {
+    		int s, int cont, int z, int zp, int x, int y, ArrayList<Zombie> lz) {
         matriz = m;
         posicionPlants = new int[] {row,col};
         posicionInicial = new int[2];
@@ -29,12 +31,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
         celdasVisitadasY = y;
         zombieTotal = z;
         zombiePercibidos = zp;
+        listZombies = lz;
     }
     public EstadoPlanta() {
     	
         matriz = new int[5][9];
         posicionPlants = new int[2];
-        cantidadSol = 6;
+        cantidadSol = 20;
         contadorZombie = 0;
         celdasVisitadasX = 0;
         celdasVisitadasY = 0;
@@ -63,13 +66,22 @@ public class EstadoPlanta extends SearchBasedAgentState {
         int[] newPosition = new int[2];
         newPosition[0] = posicionPlants[0];
         newPosition[1] = posicionPlants[1];
+        
+        ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
+        
+		this.getListZombies().forEach((z) -> {
+
+			Zombie nuevo = new Zombie(z.getId(), z.getPostX(), z.getPostY(), z.getTipo());			
+			listZombies.add(nuevo);
+
+		});
 
         EstadoPlanta newState = 
         		new EstadoPlanta(newmatriz, this.getRowPosition(),
         							 this.getColumnPosition(), this.cantidadSol, 
         							 this.contadorZombie, this.zombieTotal, 
         							 this.zombiePercibidos, this.celdasVisitadasX,
-        							 this.celdasVisitadasY);   
+        							 this.celdasVisitadasY, listZombies);   
         return newState;
     }
 
@@ -134,6 +146,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 			m--;
 		}
 		*/
+		
         int cantSoles = this.getCantidadSol();
         int contadorZombie = plantsPerception.getContZombie();
         int celdasx = plantsPerception.getCeldasVisitadasX();
@@ -144,6 +157,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         this.contadorZombie = contadorZombie;
         this.cantidadSol = cantSoles;
         this.zombieTotal = zombieTotal;
+		this.setListZombies(plantsPerception.getListZombies());
     }
 
     @Override
@@ -157,7 +171,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         
         this.setRowPosition(0);
         this.setColumnPosition(0);
-        this.setCantidadSol(10);
+     //   this.setCantidadSol(20);
         this.setContadorZombie(0);
     }
 
@@ -427,6 +441,12 @@ public class EstadoPlanta extends SearchBasedAgentState {
 
 	public void setCeldasVisitadasY(int celdasVisitadasY) {
 		this.celdasVisitadasY = celdasVisitadasY;
+	}
+	public ArrayList<Zombie> getListZombies() {
+		return listZombies;
+	}
+	public void setListZombies(ArrayList<Zombie> listZombies) {
+		this.listZombies = listZombies;
 	}
 	
 }

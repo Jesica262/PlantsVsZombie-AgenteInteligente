@@ -32,6 +32,7 @@ public class PercepcionPlanta extends Perception {
     private int celdasVisitadasX;
     private int celdasVisitadasY;
     private int zombiePercibido;
+    private ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
 
     public PercepcionPlanta() {}
     
@@ -64,7 +65,16 @@ public class PercepcionPlanta extends Perception {
         this.setCeldasVisitadasX(estadoAmbiente.getCeldasVisitadasX());
         this.setCeldasVisitadasY(estadoAmbiente.getCeldasVisitadasY());
         this.setZombiePercibido(estadoAmbiente.getZombiePercibido());
+        this.setListZombies(estadoAmbiente.getListZombies());
     }
+
+	public ArrayList<Zombie> getListZombies() {
+		return listZombies;
+	}
+
+	public void setListZombies(ArrayList<Zombie> listZombies) {
+		this.listZombies = listZombies;
+	}
 
 	public ArrayList<Integer> getSensorFilaDerecha() {
 		return sensorFilaDerecha;

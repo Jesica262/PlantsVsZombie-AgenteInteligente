@@ -22,6 +22,8 @@ public class Jardin extends Environment {
     @Override
     public Perception getPercept() {
     
+    	this.getEnvironmentState().actualizarZombies();
+    	
         PercepcionPlanta perception = new PercepcionPlanta();
   
         perception.initPerception(this);

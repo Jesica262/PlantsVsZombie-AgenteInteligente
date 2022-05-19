@@ -15,9 +15,10 @@ public class MoverArriba extends SearchAction {
             EstadoPlanta plantsState = (EstadoPlanta) s;
 
             int row = plantsState.getRowPosition();
+            int col = plantsState.getColumnPosition();
 
             // Mover Arriba significa que va de la fila 4 a la 0 permaneciendo en la misma columna, por lo que el valor de la fila va disminuyendo 
-            if (row >0)
+            if (row >0 && (plantsState.getmatrizPosition(row-1, col) >= 1 && plantsState.getmatrizPosition(row-1, col) <=5))
             {
             	plantsState.setRowPosition(row-1);
             	

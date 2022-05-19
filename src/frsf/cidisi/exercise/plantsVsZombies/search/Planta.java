@@ -53,7 +53,7 @@ public class Planta extends SearchBasedAgent {
         BreathFirstSearch strategy = new BreathFirstSearch();
     	
     	// Create the search strategy
-     	//DepthFirstSearch strategy = new DepthFirstSearch();	
+       // DepthFirstSearch strategy = new DepthFirstSearch();	
      	//BreathFirstSearch strategy = new BreathFirstSearch();
     	//IEstimatedCostFunction heuristic = new Heuristic();
         //GreedySearch strategy = new GreedySearch(heuristic);

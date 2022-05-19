@@ -10,11 +10,11 @@ public class ObjetivoPlanta extends GoalTest {
     	
     	EstadoPlanta estadoPlanta = (EstadoPlanta) agentState;
     	
-    	if(estadoPlanta.getContadorZombie() == estadoPlanta.getZombieTotal())
+    	if(estadoPlanta.getContadorZombie() == estadoPlanta.getZombieTotal() && estadoPlanta.getCantidadSol()>0)
     	{
     		return true;
     	}
-    	else if(estadoPlanta.getColumnPosition()==8)
+    	else if(estadoPlanta.getColumnPosition()==8 && estadoPlanta.getCantidadSol()>0)
     	{
     		return true;
     	}
