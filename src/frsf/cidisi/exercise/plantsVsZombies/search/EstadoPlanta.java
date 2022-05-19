@@ -14,12 +14,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
     private int celdasVisitadasX;
     private int celdasVisitadasY;
     private int contadorZombie;
+    private int contadorPlanta;
     private int zombieTotal;
     private int zombiePercibidos;
     private ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
 
     public EstadoPlanta(int[][] m, int row, int col, 
-    		int s, int cont, int z, int zp, int x, int y, ArrayList<Zombie> lz) {
+    		int s, int cont, int z, int zp, int x, int y, ArrayList<Zombie> lz, int cp) {
         matriz = m;
         posicionPlants = new int[] {row,col};
         posicionInicial = new int[2];
@@ -32,6 +33,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         zombieTotal = z;
         zombiePercibidos = zp;
         listZombies = lz;
+        contadorPlanta = cp;
     }
     public EstadoPlanta() {
     	
@@ -42,6 +44,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         celdasVisitadasX = 0;
         celdasVisitadasY = 0;
         zombiePercibidos = 0;
+        contadorPlanta = 0;
           
         this.initState();
     }
@@ -81,7 +84,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         							 this.getColumnPosition(), this.cantidadSol, 
         							 this.contadorZombie, this.zombieTotal, 
         							 this.zombiePercibidos, this.celdasVisitadasX,
-        							 this.celdasVisitadasY, listZombies);   
+        							 this.celdasVisitadasY, this.listZombies, this.contadorPlanta);   
         return newState;
     }
 
@@ -107,7 +110,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 			i++;
 		}
 		
-	/*	int j = col;
+		int j = col;
 			
 		for (Integer valor : plantsPerception.getSensorFilaIzquierda()) 
 		{ 
@@ -145,10 +148,10 @@ public class EstadoPlanta extends SearchBasedAgentState {
 			}
 			m--;
 		}
-		*/
 		
         int cantSoles = this.getCantidadSol();
         int contadorZombie = plantsPerception.getContZombie();
+        int contadorPlanta = plantsPerception.getContadorPlanta();
         int celdasx = plantsPerception.getCeldasVisitadasX();
         int celdasy = plantsPerception.getCeldasVisitadasY();
         int zombieTotal = plantsPerception.getZombieTotal();
@@ -157,6 +160,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
         this.contadorZombie = contadorZombie;
         this.cantidadSol = cantSoles;
         this.zombieTotal = zombieTotal;
+        this.contadorPlanta = contadorPlanta;
 		this.setListZombies(plantsPerception.getListZombies());
     }
 
@@ -437,5 +441,13 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	public void setListZombies(ArrayList<Zombie> listZombies) {
 		this.listZombies = listZombies;
 	}
+	public int getContadorPlanta() {
+		return contadorPlanta;
+	}
+	public void setContadorPlanta(int contadorPlanta) {
+		this.contadorPlanta = contadorPlanta;
+	}
+	
+	
 	
 }

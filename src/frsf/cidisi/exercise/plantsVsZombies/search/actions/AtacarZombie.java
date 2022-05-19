@@ -135,6 +135,7 @@ public class AtacarZombie extends SearchAction {
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        		//environmentState.eliminarZombie(row, col);
             	
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
@@ -156,8 +157,8 @@ public class AtacarZombie extends SearchAction {
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
         		environmentState.setPosicionAgente(new int[] {row, col+1});
-        		environmentState.setCantidadSoles(plantsState.getCantidadSol());
-            	
+        		environmentState.setCantidadSoles(plantsState.getCantidadSol());            	
+        	//	environmentState.eliminarZombie(row,col+1);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
         	}
@@ -179,7 +180,7 @@ public class AtacarZombie extends SearchAction {
         		environmentState.setMatriz(row, col-1, PercepcionPlanta.PERCEPCION_VACIO);
         		environmentState.setPosicionAgente(new int[] {row, col-1});
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
-            	
+        	//	environmentState.eliminarZombie(row,col-1);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
         	}
@@ -201,6 +202,7 @@ public class AtacarZombie extends SearchAction {
         		environmentState.setMatriz(row+1, col, PercepcionPlanta.PERCEPCION_VACIO);
         		environmentState.setPosicionAgente(new int[] {row+1, col});
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        	//	environmentState.eliminarZombie(row+1,col);
         		
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
@@ -223,6 +225,7 @@ public class AtacarZombie extends SearchAction {
         		environmentState.setMatriz(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
         		environmentState.setPosicionAgente(new int[] {row-1, col});
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        	//	environmentState.eliminarZombie(row-1,col);
             	
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;

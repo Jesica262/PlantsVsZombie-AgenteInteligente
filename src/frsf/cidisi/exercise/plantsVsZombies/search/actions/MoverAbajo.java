@@ -17,7 +17,7 @@ public class MoverAbajo extends SearchAction {
         int row = plantsState.getRowPosition();
 
         // Mover Abajo significa que va de la fila 0 a la 4 permaneciendo en la misma columna, por lo que el valor de la fila va aumentando 
-        if (row < 5)
+        if (row < 4)
         {
         	plantsState.setRowPosition(row+1);
         	
@@ -35,7 +35,7 @@ public class MoverAbajo extends SearchAction {
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 	
-    	if(row < 5) 
+    	if(row < 4) 
     	{
     		plantsState.setRowPosition(row+1);
     		environmentState.setPosicionAgente(new int[]{row +1, col}); 

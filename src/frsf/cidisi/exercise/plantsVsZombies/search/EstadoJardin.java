@@ -1,7 +1,6 @@
 package frsf.cidisi.exercise.plantsVsZombies.search;
 
 import java.util.ArrayList;
-import java.util.Random;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public class EstadoJardin extends EnvironmentState {
@@ -16,6 +15,7 @@ public class EstadoJardin extends EnvironmentState {
     private int contadorZombie;
     private int zombieTotal;
     private int zombiePercibido;
+    private int contadorPlanta;
     private boolean zombieLlego = false;
     private ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
     private ArrayList<Integer[]> listGirasoles;
@@ -49,7 +49,8 @@ public class EstadoJardin extends EnvironmentState {
         
         this.setPosicionAgente(new int[] {0,0});
         this.setCantidadSoles(20);
-        this.setContadorZombie(0);				
+        this.setContadorZombie(0);	
+        this.setContadorPlanta(0);
         this.setZombieTotal(2);
         this.setCeldasVisitadasX(0);
         this.setCeldasVisitadasY(0);
@@ -88,6 +89,17 @@ public class EstadoJardin extends EnvironmentState {
         }   
     }
     
+    public void eliminarZombie(int row, int col)
+    {
+    	this.getListZombies().forEach((z) -> {
+    		
+    		if(z.getPostX()==row && z.getPostY()==col )
+    		{
+    			this.listZombies.remove(z);
+    		}
+    	});
+    }
+    
     public  ArrayList<Zombie> actualizarZombies()
     {
     	this.getListZombies().forEach((z) -> {
@@ -105,6 +117,7 @@ public class EstadoJardin extends EnvironmentState {
     		}
     		
     	});
+    	
     	return listZombies;
     }
 	/**
@@ -410,6 +423,22 @@ public class EstadoJardin extends EnvironmentState {
 
 	public void setZombiePercibido(int zombiePercibido) {
 		this.zombiePercibido = zombiePercibido;
+	}
+
+	public int getContadorPlanta() {
+		return contadorPlanta;
+	}
+
+	public void setContadorPlanta(int contadorPlanta) {
+		this.contadorPlanta = contadorPlanta;
+	}
+
+	public boolean isZombieLlego() {
+		return zombieLlego;
+	}
+
+	public void setZombieLlego(boolean zombieLlego) {
+		this.zombieLlego = zombieLlego;
 	}
 	
 	

@@ -11,6 +11,8 @@ import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverAbajo;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverArriba;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverDerecha;
 import frsf.cidisi.exercise.plantsVsZombies.search.actions.MoverIzquierda;
+import frsf.cidisi.exercise.plantsVsZombies.search.actions.PlantarGirasol;
+import frsf.cidisi.exercise.plantsVsZombies.search.actions.TomarSol;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.search.*;
 import java.util.logging.Level;
@@ -35,11 +37,13 @@ public class Planta extends SearchBasedAgent {
 
         // Creaccion de Operadores
         Vector<SearchAction> operators = new Vector<SearchAction>();
+        operators.addElement(new PlantarGirasol());
+        operators.addElement(new TomarSol());
         operators.addElement(new AtacarZombie());
         operators.addElement(new MoverDerecha());
-   //     operators.addElement(new MoverIzquierda());
-   //     operators.addElement(new MoverArriba());
-   //     operators.addElement(new MoverAbajo());
+        operators.addElement(new MoverIzquierda());
+        operators.addElement(new MoverArriba());
+        operators.addElement(new MoverAbajo());
         
         // Inicializando el Problema del Agente
         Problem problem = new Problem(goal, plantsState, operators);
@@ -50,11 +54,11 @@ public class Planta extends SearchBasedAgent {
     public Action selectAction() {
     	
     	// Breath First Search:
-        BreathFirstSearch strategy = new BreathFirstSearch();
+       // BreathFirstSearch strategy = new BreathFirstSearch();
     	
     	// Create the search strategy
        // DepthFirstSearch strategy = new DepthFirstSearch();	
-     	//BreathFirstSearch strategy = new BreathFirstSearch();
+     	BreathFirstSearch strategy = new BreathFirstSearch();
     	//IEstimatedCostFunction heuristic = new Heuristic();
         //GreedySearch strategy = new GreedySearch(heuristic);
         /**

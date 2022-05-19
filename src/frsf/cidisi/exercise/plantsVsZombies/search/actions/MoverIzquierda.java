@@ -20,7 +20,7 @@ public class MoverIzquierda extends SearchAction {
     	{
         	plantsState.setColumnPosition(col-1);
         	plantsState.setCeldasVisitadasX(plantsState.getCeldasVisitadasX()+1);
-            System.out.println("\n Agente State: "+plantsState+"\n");
+       //     System.out.println("\n Agente State: "+plantsState+"\n");
             
             return plantsState;
          }
@@ -41,7 +41,7 @@ public class MoverIzquierda extends SearchAction {
         	plantsState.setColumnPosition(col-1);
         	plantsState.setCeldasVisitadasX(plantsState.getCeldasVisitadasX()+1);
         	environmentState.setPosicionAgente(new int[] {row,col-1});
-            System.out.println("\n Ambiente State: "+environmentState+"\n");
+        //    System.out.println("\n Ambiente State: "+environmentState+"\n");
             
             return environmentState;
          }
