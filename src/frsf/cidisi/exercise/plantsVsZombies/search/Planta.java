@@ -19,12 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Planta extends SearchBasedAgent {
-
-	public static EstadoPlanta estadoAnterior;
-	public static EstadoPlanta estadoSiguienteAlRepetido;
-	public static boolean seEvitoAccion = false;
-	public static boolean accionMediante = false;
-	public static boolean comprobarEstadoRepetido = false;
 	
     public Planta() {
 
@@ -40,10 +34,10 @@ public class Planta extends SearchBasedAgent {
         operators.addElement(new PlantarGirasol());
         operators.addElement(new TomarSol());
         operators.addElement(new AtacarZombie());
+        operators.addElement(new MoverAbajo());
+        operators.addElement(new MoverArriba());
         operators.addElement(new MoverDerecha());
         operators.addElement(new MoverIzquierda());
-        operators.addElement(new MoverArriba());
-        operators.addElement(new MoverAbajo());
         
         // Inicializando el Problema del Agente
         Problem problem = new Problem(goal, plantsState, operators);
@@ -57,7 +51,7 @@ public class Planta extends SearchBasedAgent {
        // BreathFirstSearch strategy = new BreathFirstSearch();
     	
     	// Create the search strategy
-       // DepthFirstSearch strategy = new DepthFirstSearch();	
+     //   DepthFirstSearch strategy = new DepthFirstSearch();	
      	BreathFirstSearch strategy = new BreathFirstSearch();
     	//IEstimatedCostFunction heuristic = new Heuristic();
         //GreedySearch strategy = new GreedySearch(heuristic);
@@ -89,7 +83,7 @@ public class Planta extends SearchBasedAgent {
         /* Generate an XML file with the search tree. It can also be generated
          * in other formats like PDF with PDF_TREE */
         //searchSolver.setVisibleTree(Search.EFAIA_TREE);
-        searchSolver.setVisibleTree(Search.XML_TREE);
+       // searchSolver.setVisibleTree(Search.XML_TREE);
 
         // Set the Search searchSolver.
         this.setSolver(searchSolver);

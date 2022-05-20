@@ -14,24 +14,12 @@ public class ObjetivoPlanta extends GoalTest {
     	{
     		return true;
     	}
-    	else if(estadoPlanta.getColumnPosition()==8 && estadoPlanta.getCantidadSol()>0)
-    	{
-    		return true;
-    	}
-    return false;
- 
-/*
-    	if (estadoPlanta.getContadorZombie()== estadoPlanta.getZombieTotal())
-    	{
-    		return true;
-    	}
-    	else if (estadoPlanta.isAllmatrizKnown())
+    	else if(estadoPlanta.getCantidadZombie() == 0 && estadoPlanta.getCantidadSol()>0)
     	{
     		return true;
     	}
     
     	return false;
-*/
     }
 }
 

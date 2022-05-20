@@ -14,11 +14,12 @@ public class EstadoJardin extends EnvironmentState {
     private int celdasVisitadasY;
     private int contadorZombie;
     private int zombieTotal;
-    private int zombiePercibido;
+    private int cantidadZombie;
     private int contadorPlanta;
     private boolean zombieLlego = false;
     private ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
-    private ArrayList<Integer[]> listGirasoles;
+    private ArrayList<Zombie> zombieEliminado = new ArrayList<Zombie>();
+    private ArrayList<Girasol> listGirasoles = new ArrayList<Girasol>();
 
     public EstadoJardin(int[][] m) {
     	matriz = m;
@@ -44,14 +45,20 @@ public class EstadoJardin extends EnvironmentState {
             	matriz[row][col] = PercepcionPlanta.PERCEPCION_VACIO;
             }
         }
-        	
+        
         cargarZombies();
+        
+        this.getListZombies().forEach((z) -> {
+    		
+        	matriz[z.getPostX()][z.getPostY()] = z.getTipo();
+    	});
+        
+        actualizarGirasoles();
         
         this.setPosicionAgente(new int[] {0,0});
         this.setCantidadSoles(20);
         this.setContadorZombie(0);	
         this.setContadorPlanta(0);
-        this.setZombieTotal(2);
         this.setCeldasVisitadasX(0);
         this.setCeldasVisitadasY(0);
    
@@ -63,14 +70,14 @@ public class EstadoJardin extends EnvironmentState {
             for (int col = 0; col < matriz[0].length; col++) {
             	matriz[row][col] = PercepcionPlanta.PERCEPCION_VACIO;
             }
-        }
-   
+        }  
     }
 
     public void cargarZombies()
     {
         //random 5 a 20, Para Cantidad de Zombies que van a aparecer.
        	// 5 a 20 
+    	ArrayList<Zombie> lista = new ArrayList<Zombie>();
     	listZombies.clear();
     	int rangoList = (int) (numeroRandom(4,5));
         
@@ -79,16 +86,32 @@ public class EstadoJardin extends EnvironmentState {
         	int tipoZombie = (int) (numeroRandom(1,5));
             int posicionAletorioX = (int) (numeroRandom(0,4));
         	int posicionAletorioY = (int) (numeroRandom(6,8));
+        	int ciclo = (int) (numeroRandom(1,3));
             
-            Zombie zombie = new Zombie(cantZombie, tipoZombie, posicionAletorioX, posicionAletorioY );
+            Zombie zombie = new Zombie(cantZombie, ciclo, tipoZombie, posicionAletorioX, posicionAletorioY );
             
-            listZombies.add(zombie);
-            
-            matriz[posicionAletorioX][posicionAletorioY] = tipoZombie;    
-            
-        }   
+            lista.add(zombie);              
+        }
+        
+        listZombies.addAll(removeDuplicate(lista));
+        this.setZombieTotal(listZombies.size());
+        this.setCantidadZombie(this.getZombieTotal());
     }
     
+    public ArrayList<Zombie> removeDuplicate(ArrayList<Zombie> list){
+    	
+    	for(int i=0 ;i<list.size()-1; i++)
+        {
+         for(int j=list.size()-1; j>i; j--)
+         {
+           if(list.get(j).getPostX() == list.get(i).getPostX() && list.get(j).getPostY() == list.get(i).getPostY()){
+            
+        	   list.remove(list.get(j).getId());
+           } 
+         } 
+       } 
+       return list;
+     }
     public void eliminarZombie(int row, int col)
     {
     	this.getListZombies().forEach((z) -> {
@@ -104,22 +127,47 @@ public class EstadoJardin extends EnvironmentState {
     {
     	this.getListZombies().forEach((z) -> {
     		
+    		/*for (Zombie ze: zombieEliminado) {
+    			
+    			if(z.getPostX() == ze.getPostX() && z.getPostY() == ze.getPostY())
+    			{
+    				listZombies.remove(z);
+    				//zombieEliminado.remove(ze);
+    			}
+    		}*/
     		if(z.getPostY() == 0)
     		{
     			this.zombieLlego = true;
     		}
     		else {
     			if(z.getPostY() > 0) {
-	    			matriz[z.getPostX()][z.getPostY()-1] = z.getTipo();
-		    		matriz[z.getPostX()][z.getPostY()] = PercepcionPlanta.PERCEPCION_VACIO;
-	    			z.setPostY(z.getPostY()-1);
+    				if(z.getCiclo() == 0)
+    				{
+    					matriz[z.getPostX()][z.getPostY()-1] = z.getTipo();
+		    			matriz[z.getPostX()][z.getPostY()] = PercepcionPlanta.PERCEPCION_VACIO;
+		    			z.setPostY(z.getPostY()-1);
+		    			z.setCiclo(numeroRandom(1,3));
+    				} 
+    				else {
+    					z.setCiclo(z.getCiclo()-1);
+    				}
     			}
-    		}
-    		
-    	});
-    	
+    		}	
+	    });
+   
     	return listZombies;
     }
+	
+    public void actualizarGirasoles() {
+
+		this.getListGirasoles().forEach(g -> {
+
+			int numeroCiclo = numeroRandom(1,3);
+			g.setCiclo(g.getCiclo()+numeroCiclo);
+
+		});
+
+	}
 	/**
      * String representation of the real world state.
      */
@@ -130,21 +178,9 @@ public class EstadoJardin extends EnvironmentState {
 
         str += "\n Posicion Planta: [" + this.posicionAgente[0] + "," + this.posicionAgente[1] + "]\n";
         str += " Cantidad de Soles: " + this.getCantidadSoles() + "\n";
-        str += " Posicion de Zombies: ";
-        
-        for (int i=0; i<listZombies.size(); i++)
-		{
-        	str += "[";
-			str += this.listZombies.get(i).getPostX();
-			str += ", tipo ";
-			str += this.listZombies.get(i).getTipo();
-			str += ", ";
-			str += this.listZombies.get(i).getPostY();
-			str += "], ";
-		}
-        str += "\n Zombie muertos: " + this.getContadorZombie() + "\n";
+        str += " Zombie muertos: " + this.getContadorZombie() + "\n";
+        str += " Cantidad zombie: " + this.getCantidadZombie() + "\n";
         str += " Total zombie: " + this.getZombieTotal() + "\n";
-
         str = str + " \n";
         
         for (int row = 0; row < matriz.length; row++) {
@@ -405,11 +441,11 @@ public class EstadoJardin extends EnvironmentState {
 		this.listZombies = listZombies;
 	}
 
-	public ArrayList<Integer[]> getListGirasoles() {
+	public ArrayList<Girasol> getListGirasoles() {
 		return listGirasoles;
 	}
 
-	public void setListGirasoles(ArrayList<Integer[]> listGirasoles) {
+	public void setListGirasoles(ArrayList<Girasol> listGirasoles) {
 		this.listGirasoles = listGirasoles;
 	}
 
@@ -417,12 +453,12 @@ public class EstadoJardin extends EnvironmentState {
 		this.posicionZombie = posicionZombie;
 	}
 
-	public int getZombiePercibido() {
-		return zombiePercibido;
+	public int getCantidadZombie() {
+		return cantidadZombie;
 	}
 
-	public void setZombiePercibido(int zombiePercibido) {
-		this.zombiePercibido = zombiePercibido;
+	public void setCantidadZombie(int cantidadZombie) {
+		this.cantidadZombie = cantidadZombie;
 	}
 
 	public int getContadorPlanta() {
@@ -440,6 +476,13 @@ public class EstadoJardin extends EnvironmentState {
 	public void setZombieLlego(boolean zombieLlego) {
 		this.zombieLlego = zombieLlego;
 	}
-	
-	
+
+	public ArrayList<Zombie> getZombieEliminado() {
+		return zombieEliminado;
+	}
+
+	public void setZombieEliminado(ArrayList<Zombie> zombieEliminado) {
+		this.zombieEliminado = zombieEliminado;
+	}
+
 }

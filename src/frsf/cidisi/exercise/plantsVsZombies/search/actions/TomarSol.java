@@ -18,12 +18,16 @@ public class TomarSol extends SearchAction {
         int row = plantsState.getRowPosition();
         int col = plantsState.getColumnPosition();
 
-        if(plantsState.haySol(row, col))
+        if(plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_GIRASOL)
         {       	
-        	plantsState.setCantidadSol(plantsState.getCantidadSol()+plantsState.incrementarSol(row, col));
-        	plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_GIRASOL);
-        	
-        	return plantsState;
+        	if(plantsState.tieneSol(row))
+        	{
+            	plantsState.setCantidadSol(plantsState.getCantidadSol()+plantsState.incrementarSol(row));
+            	plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_GIRASOL);
+            	plantsState.actualizarSol(row);
+            	
+            	return plantsState;
+        	}
         }       
         return null;
     }     
@@ -37,14 +41,18 @@ public class TomarSol extends SearchAction {
         int row = environmentState.getPosicionAgente()[0];
         int col = environmentState.getPosicionAgente()[1];
 	
-        if(plantsState.haySol(row, col))
+        if(plantsState.getmatrizPosition(row, col) == PercepcionPlanta.PERCEPCION_GIRASOL)
         {       	
-        	plantsState.setCantidadSol(plantsState.getCantidadSol()+plantsState.incrementarSol(row, col));
-        	plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_GIRASOL);
-    		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_GIRASOL);
-    		environmentState.setCantidadSoles(plantsState.getCantidadSol());
-        	
-        	return environmentState;
+        	if(plantsState.tieneSol(row))
+        	{     	
+	        	plantsState.setCantidadSol(plantsState.getCantidadSol()+plantsState.incrementarSol(row));
+	        	plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_GIRASOL);
+	        	plantsState.actualizarSol(row);
+	    		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_GIRASOL);
+	    		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+
+	        	return environmentState;
+        	}
         }       
         return null;
     }

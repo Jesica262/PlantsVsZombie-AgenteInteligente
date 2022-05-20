@@ -1,6 +1,7 @@
 package frsf.cidisi.exercise.plantsVsZombies.search.actions;
 
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoPlanta;
+import frsf.cidisi.exercise.plantsVsZombies.search.PercepcionPlanta;
 import frsf.cidisi.exercise.plantsVsZombies.search.EstadoJardin;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -15,6 +16,7 @@ public class MoverDerecha extends SearchAction {
         EstadoPlanta plantsState = (EstadoPlanta) s;
 
         int col = plantsState.getColumnPosition();
+        int row = plantsState.getRowPosition();
 
         if(col<8)
     	{

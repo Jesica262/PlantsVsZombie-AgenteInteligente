@@ -1,6 +1,7 @@
 package frsf.cidisi.exercise.plantsVsZombies.search;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
@@ -23,11 +24,33 @@ public class Jardin extends Environment {
     public Perception getPercept() {
     
     	this.getEnvironmentState().actualizarZombies();
+    	this.getEnvironmentState().actualizarGirasoles();
     	
         PercepcionPlanta perception = new PercepcionPlanta();
-  
-        perception.initPerception(this);
         
+        int row = this.getEnvironmentState().getPosicionAgente()[0];
+        int col = this.getEnvironmentState().getPosicionAgente()[1];
+        
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }  
+        
+		perception.setPosicion(this.getEnvironmentState().getPosicionAgente());
+	    perception.setCantidadZombie(this.getEnvironmentState().getCantidadZombie());
+	    perception.setCantidadSol(this.getEnvironmentState().getCantidadSoles());
+	    perception.setZombieTotal(this.getEnvironmentState().getZombieTotal());
+	    perception.setCantidadZombie(this.getEnvironmentState().getCantidadZombie());
+	    perception.setListZombies(this.getEnvironmentState().getListZombies());
+	    perception.setContadorPlanta(this.getEnvironmentState().getContadorPlanta());
+	    perception.setListGirasoles(this.getEnvironmentState().getListGirasoles());
+	    
+	    perception.setSensorFilaDerecha(this.getEnvironmentState().getDerecha(row, col));
+	    perception.setSensorFilaIzquierda(this.getEnvironmentState().getIzquierda(row, col));
+	    perception.setSensorColumnaArriba(this.getEnvironmentState().getArriba(row, col));
+	    perception.setSensorColumnaAbajo(this.getEnvironmentState().getAbajo(row, col));
+    	
         return perception;
     }
 
@@ -41,22 +64,10 @@ public class Jardin extends Environment {
 
         EstadoJardin estadoJardin = this.getEnvironmentState();
 
-        int[][] posicionZombieFila = estadoJardin.getMatriz();
-        boolean zombieFin = false;
-        
-        // Verifica que el Zombie llega a la columna 0, por lo que el juego termina.
-        
-        for(int i = 0; i<posicionZombieFila.length; i++)
-        {
-        	if( posicionZombieFila[i][0] > 0 && posicionZombieFila[i][0] < 6)
-        	{
-        		zombieFin = true;
-        	}         
-        }
         int cantidadSoles = estadoJardin.getCantidadSoles();
   
       //   El Agente falla cuando la Planta se queda sin Soles y si el Zombie llego ala casilla inicial.
-       if ((cantidadSoles <= 0 ) || zombieFin)
+       if ((cantidadSoles <= 0 ) || estadoJardin.isZombieLlego())
             return true;
         return false;
     }

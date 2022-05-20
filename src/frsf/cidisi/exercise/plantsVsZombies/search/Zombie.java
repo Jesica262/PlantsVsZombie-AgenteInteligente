@@ -8,14 +8,20 @@ public class Zombie {
 	private int postX;
 	private int postY;
 
-	public Zombie(int id, int tipo, int postX, int postY) {
+	public Zombie(int id, int ciclo, int tipo, int postX, int postY) {
 		super();
 		this.id = id;
+		this.ciclo = ciclo;
 		this.tipo = tipo;
 		this.postX = postX;
 		this.postY = postY;
 	}
-
+	
+	public Zombie(int postX, int postY) {
+		super();
+		this.postX = postX;
+		this.postY = postY;
+	}
 	
 	public int getId() {
 		return id;

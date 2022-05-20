@@ -15,12 +15,16 @@ public class EstadoPlanta extends SearchBasedAgentState {
     private int celdasVisitadasY;
     private int contadorZombie;
     private int contadorPlanta;
+    private int cantidadZombie;
     private int zombieTotal;
-    private int zombiePercibidos;
+    private boolean tieneGirasol;
+    private int cantSol;
+    private ArrayList<Girasol> listGirasoles = new ArrayList<Girasol>();
     private ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
 
     public EstadoPlanta(int[][] m, int row, int col, 
-    		int s, int cont, int z, int zp, int x, int y, ArrayList<Zombie> lz, int cp) {
+    		int s, int cont, int z, int x, int y, int cp,
+    		int cz, ArrayList<Girasol> lg, ArrayList<Zombie> lz) {
         matriz = m;
         posicionPlants = new int[] {row,col};
         posicionInicial = new int[2];
@@ -31,9 +35,10 @@ public class EstadoPlanta extends SearchBasedAgentState {
         celdasVisitadasX = x;
         celdasVisitadasY = y;
         zombieTotal = z;
-        zombiePercibidos = zp;
-        listZombies = lz;
         contadorPlanta = cp;
+        cantidadZombie = cz;
+        listGirasoles = lg;
+        listZombies = lz;
     }
     public EstadoPlanta() {
     	
@@ -43,7 +48,6 @@ public class EstadoPlanta extends SearchBasedAgentState {
         contadorZombie = 0;
         celdasVisitadasX = 0;
         celdasVisitadasY = 0;
-        zombiePercibidos = 0;
         contadorPlanta = 0;
           
         this.initState();
@@ -59,6 +63,11 @@ public class EstadoPlanta extends SearchBasedAgentState {
     @Override
     public SearchBasedAgentState clone() {
     	
+    	EstadoPlanta newState = new EstadoPlanta();
+
+    	newState.setCantidadSol(this.getCantidadSol());
+    	newState.setCantidadZombie(this.getCantidadZombie());
+		
         int[][] newmatriz = new int[5][9];
 
         for (int row = 0; row < matriz.length; row++) {
@@ -70,21 +79,33 @@ public class EstadoPlanta extends SearchBasedAgentState {
         newPosition[0] = posicionPlants[0];
         newPosition[1] = posicionPlants[1];
         
-        ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
-        
-		this.getListZombies().forEach((z) -> {
+    	newState.setPosicionPlants(newPosition);
+    	newState.setContadorPlanta(this.getContadorPlanta());
+    	newState.setMatriz(newmatriz);
+    	newState.setZombieTotal(this.getZombieTotal());
+    	newState.setRowPosition(newPosition[0]);
+    	newState.setColumnPosition(newPosition[1]);
+    	
+        ArrayList<Girasol> listGirasoles = new ArrayList<Girasol>();
+        this.getListGirasoles().forEach(g -> {
 
-			Zombie nuevo = new Zombie(z.getId(), z.getPostX(), z.getPostY(), z.getTipo());			
-			listZombies.add(nuevo);
+        	Girasol girasol = new Girasol(g.getId(), g.getTipo(), g.getCiclo(), g.getContador(), g.getRow());
+			listGirasoles.add(girasol);
 
 		});
+        
+        ArrayList<Zombie> listZombies = new ArrayList<Zombie>();
+        
+        this.getListZombies().forEach(z -> {
 
-        EstadoPlanta newState = 
-        		new EstadoPlanta(newmatriz, this.getRowPosition(),
-        							 this.getColumnPosition(), this.cantidadSol, 
-        							 this.contadorZombie, this.zombieTotal, 
-        							 this.zombiePercibidos, this.celdasVisitadasX,
-        							 this.celdasVisitadasY, this.listZombies, this.contadorPlanta);   
+			Zombie zombie = new Zombie(z.getId(), z.getCiclo(), z.getPostX(), z.getPostY(), z.getTipo());
+			listZombies.add(zombie);
+
+		});
+	     
+        newState.setListZombies(listZombies);
+        newState.setListGirasoles(listGirasoles);
+        
         return newState;
     }
 
@@ -102,11 +123,6 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		for (Integer valor : plantsPerception.getSensorFilaDerecha()) 
 		{ 
 			matriz[row][i] = valor.intValue();
-		
-			if( matriz[row][i] >= 1 && matriz[row][i] <= 5)
-			{
-				zombiePercibidos++;
-			}
 			i++;
 		}
 		
@@ -115,11 +131,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		for (Integer valor : plantsPerception.getSensorFilaIzquierda()) 
 		{ 
 			matriz[row][j] = valor.intValue();
-			
-			if( matriz[row][j] >= 1 && matriz[row][j] <= 5)
-			{
-				zombiePercibidos++;
-			}
+
 			j--;
 		}
 		
@@ -128,11 +140,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		for (Integer valor : plantsPerception.getSensorColumnaArriba()) 
 		{ 
 			matriz[k][col] = valor.intValue();
-			
-			if(matriz[k][col] >= 1 && matriz[k][col] <= 5)
-			{
-				zombiePercibidos++;
-			}
+
 			k++;
 		}
 
@@ -141,11 +149,7 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		for (Integer valor : plantsPerception.getSensorColumnaAbajo()) 
 		{ 
 			matriz[m][col] = valor.intValue();
-			
-			if(matriz[m][col] >= 1 && matriz[m][col] <= 5)
-			{
-				zombiePercibidos++;
-			}
+
 			m--;
 		}
 		
@@ -155,13 +159,16 @@ public class EstadoPlanta extends SearchBasedAgentState {
         int celdasx = plantsPerception.getCeldasVisitadasX();
         int celdasy = plantsPerception.getCeldasVisitadasY();
         int zombieTotal = plantsPerception.getZombieTotal();
+        int cantZombie = plantsPerception.getCantidadZombie();
+        this.setListGirasoles(plantsPerception.getListGirasoles());
+        this.setListZombies(plantsPerception.getListZombies());
         this.celdasVisitadasX = celdasx;
         this.celdasVisitadasX = celdasy;
         this.contadorZombie = contadorZombie;
         this.cantidadSol = cantSoles;
         this.zombieTotal = zombieTotal;
         this.contadorPlanta = contadorPlanta;
-		this.setListZombies(plantsPerception.getListZombies());
+        this.cantidadZombie = cantZombie;
     }
 
     @Override
@@ -175,7 +182,6 @@ public class EstadoPlanta extends SearchBasedAgentState {
         
         this.setRowPosition(0);
         this.setColumnPosition(0);
-     //   this.setCantidadSol(20);
         this.setContadorZombie(0);
     }
 
@@ -190,10 +196,9 @@ public class EstadoPlanta extends SearchBasedAgentState {
     	str += "\n\n Posicion: [" + this.getRowPosition() + "," + "" + this.getColumnPosition() + "]\n";
         str += " Cantidad de Soles: " + this.getCantidadSol() + "\n";
         str += " Zombie muertos: " + this.contadorZombie + "\n";
-        str += " Total zombie: " + this.getZombieTotal() + "\n";
-        str += " Zombie Percibidos: " + this.getZombiePercibidos() + "\n";
-        str += " Cantidad celdas visitadas en X: " + this.getCeldasVisitadasX() + "\n";
-        str += " Cantidad celdas visitadas en Y: " + this.getCeldasVisitadasY() + "\n";
+        str += " Total Zombies: " + this.getZombieTotal() + "\n";
+        str += " Total Girasoles: " + this.getListGirasoles().size() + "\n";
+        str += " Lista zombie: " + this.getListZombies().size() + "\n";
 
         str = str + "\n";
         for (int row = 0; row < matriz.length; row++) {
@@ -242,18 +247,53 @@ public class EstadoPlanta extends SearchBasedAgentState {
         if (!(obj instanceof EstadoPlanta))
             return false;
 
-		EstadoPlanta planta = (EstadoPlanta) obj;
+     /*   int[][] matrizObj = ((EstadoPlanta) obj).getMatriz();
+        int[] positionObj = ((EstadoPlanta) obj).getPosition();
+        int sol = ((EstadoPlanta) obj).getCantidadSol();
 
-		if (this.getCantidadSol() == planta.getCantidadSol()
+        if (!(sol == this.getCantidadSol())) {
+        	return false;
+        }
+        
+        for (int row = 0; row < matriz.length; row++) {
+            for (int col = 0; col < matriz[0].length; col++) {
+                if (matriz[row][col] != matrizObj[row][col]) {
+                    return false;
+                }
+            }
+        }
+
+        if (posicionPlants[0] != positionObj[0] || posicionPlants[1] != positionObj[1]) {
+            return false;
+        }
+        
+        return true;*/
+        
+    	EstadoPlanta planta = (EstadoPlanta) obj;
+
+		if (this.getCantidadZombie() == planta.getCantidadZombie()
 				&& this.getPosicionPlants().equals(planta.getPosicionPlants())
 				&& this.getListZombies().size() == planta.getListZombies().size()
-				&& this.getContadorZombie() == planta.getContadorZombie()
-				&& this.getZombieTotal() == (planta.getZombieTotal())) {
+				&& this.getListGirasoles().size() == planta.getListGirasoles().size()
+				&& this.getMatriz().equals(planta.getMatriz())
+				&& this.getCantidadSol() == planta.getCantidadSol()) {
+			
 			return true;
 		}
 		return false;
     }
 
+    public void eliminarZombie(int row, int col)
+    {
+    	this.getListZombies().forEach((z) -> {
+    		
+    		if(z.getPostX()==row && z.getPostY()==col )
+    		{
+    			this.listZombies.remove(z);
+    		}
+    	});
+    }
+    
     public int numeroRandomGirasol()
     {
     	return numeroRandom(1,3);
@@ -360,33 +400,58 @@ public class EstadoPlanta extends SearchBasedAgentState {
 
 	public boolean isAllmatrizKnown() {
 
+		for (int row = 0; row < matriz.length; row++) {
 	        for (int col = 0; col < matriz[0].length; col++) {
-	            if (matriz[0][col] == PercepcionPlanta.PERCEPCION_VACIO) {
+	            if (matriz[row][col] == PercepcionPlanta.PERCEPCION_DESCONOCIDO) {
 	            	
 	                return false;
 	            }	    
 	        }
+		}
   
 	    return true;
 	}
 	
 	
-	public int incrementarSol(int row,int col)
+	public int incrementarSol(int row)
 	{
-		int sol = 0;		
-		if(matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL1)
-		{
-			sol = 1;
-		}
-		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL2)
-		{
-			sol = 2;
-		}
-		else if(matriz[row][col] == PercepcionPlanta.PERCEPCION_SOL3)
-		{
-			sol = 3;
-		}
-		return sol;
+		cantSol = 0;		
+		this.getListGirasoles().forEach((g) -> {
+
+			if(row == g.getRow())
+			{
+				g.setContador(g.getContador()+cantSol);
+			}
+
+		});
+		return cantSol;
+	}
+	
+	public boolean tieneSol(int row)
+	{
+		tieneGirasol = false;
+		
+		this.getListGirasoles().forEach((g) -> {
+
+			if(row == g.getRow())
+			{
+				tieneGirasol = true;
+			}
+
+		});
+		return tieneGirasol;
+	}
+	
+	public void actualizarSol(int row)
+	{		
+		this.getListGirasoles().forEach((g) -> {
+
+			if(row == g.getRow())
+			{
+				g.setContador(0);
+			}
+
+		});
 	}
 	
 	public boolean haySol(int row, int col)
@@ -412,14 +477,6 @@ public class EstadoPlanta extends SearchBasedAgentState {
 		this.zombieTotal = zombieTotal;
 	}
 
-	public int getZombiePercibidos() {
-		return zombiePercibidos;
-	}
-
-	public void setZombiePercibidos(int zombiePercibidos) {
-		this.zombiePercibidos = zombiePercibidos;
-	}
-
 	public int getCeldasVisitadasX() {
 		return celdasVisitadasX;
 	}
@@ -435,19 +492,29 @@ public class EstadoPlanta extends SearchBasedAgentState {
 	public void setCeldasVisitadasY(int celdasVisitadasY) {
 		this.celdasVisitadasY = celdasVisitadasY;
 	}
-	public ArrayList<Zombie> getListZombies() {
-		return listZombies;
-	}
-	public void setListZombies(ArrayList<Zombie> listZombies) {
-		this.listZombies = listZombies;
-	}
 	public int getContadorPlanta() {
 		return contadorPlanta;
 	}
 	public void setContadorPlanta(int contadorPlanta) {
 		this.contadorPlanta = contadorPlanta;
 	}
-	
-	
+	public int getCantidadZombie() {
+		return cantidadZombie;
+	}
+	public void setCantidadZombie(int cantidadZombie) {
+		this.cantidadZombie = cantidadZombie;
+	}
+	public ArrayList<Girasol> getListGirasoles() {
+		return listGirasoles;
+	}
+	public void setListGirasoles(ArrayList<Girasol> listGirasoles) {
+		this.listGirasoles = listGirasoles;
+	}
+	public ArrayList<Zombie> getListZombies() {
+		return listZombies;
+	}
+	public void setListZombies(ArrayList<Zombie> listZombies) {
+		this.listZombies = listZombies;
+	}
 	
 }

@@ -29,7 +29,8 @@ public class AtacarZombie extends SearchAction {
         	{       		
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
-            	
+        		plantsState.setCantidadZombie(0);
+        		//plantsState.eliminarZombie(row, col);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return plantsState;
         	}
@@ -38,7 +39,7 @@ public class AtacarZombie extends SearchAction {
         	}
         }
 
-        if(col<8 && plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+        /*   if(col<8 && plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
         		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
         {
         	
@@ -48,7 +49,8 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setColumnPosition(col+1);
-            	
+        		//plantsState.eliminarZombie(row, col+1);
+        		plantsState.setCantidadZombie(0);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return plantsState;
         	}
@@ -66,14 +68,15 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row, col-1, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setColumnPosition(col-1);
-            	
+        	//	plantsState.eliminarZombie(row, col-1);
+        		plantsState.setCantidadZombie(0);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return plantsState;
         	}
         	else {
         		return null;
         	}
-        }
+        }*/
         else if(row<4 && plantsState.getmatrizPosition(row+1, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
         		&& plantsState.getmatrizPosition(row+1, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
         {
@@ -84,7 +87,8 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row+1, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setRowPosition(row+1);
-            	
+        	//	plantsState.eliminarZombie(row+1, col);
+        		plantsState.setCantidadZombie(0);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return plantsState;
         	}
@@ -102,7 +106,8 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setRowPosition(row-1);
-            	
+        	//	plantsState.eliminarZombie(row-1, col);
+        		plantsState.setCantidadZombie(0);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return plantsState;
         	}
@@ -132,11 +137,13 @@ public class AtacarZombie extends SearchAction {
             	plantsState.setCantidadSol(plantsState.getCantidadSol()-plantsState.getmatrizPosition(row, col)*2);
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row, col, PercepcionPlanta.PERCEPCION_VACIO);
+        		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
+        	//	plantsState.eliminarZombie(row, col);
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row, col, PercepcionPlanta.PERCEPCION_VACIO);
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
-        		//environmentState.eliminarZombie(row, col);
-            	
+        	//	environmentState.eliminarZombie(row,col);
+        		environmentState.setCantidadZombie(environmentState.getCantidadZombie()-1);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
         	}
@@ -144,7 +151,7 @@ public class AtacarZombie extends SearchAction {
         		return null;
         	}
         }
-        else if(col<8 && plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
+   /*     else if(col<8 && plantsState.getmatrizPosition(row, col+1) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
         		&& plantsState.getmatrizPosition(row, col+1) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
         {
         	
@@ -154,11 +161,13 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setColumnPosition(col+1);
+        	//	plantsState.eliminarZombie(row, col+1);
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row, col+1, PercepcionPlanta.PERCEPCION_VACIO);
-        		environmentState.setPosicionAgente(new int[] {row, col+1});
-        		environmentState.setCantidadSoles(plantsState.getCantidadSol());            	
-        	//	environmentState.eliminarZombie(row,col+1);
+        		//environmentState.setPosicionAgente(new int[] {row, col+1});
+        		environmentState.setCantidadSoles(plantsState.getCantidadSol());   
+        		environmentState.setCantidadZombie(environmentState.getCantidadZombie()-1);
+        	//	environmentState.eliminarZombie(row,col);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
         	}
@@ -176,10 +185,12 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row, col-1, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setColumnPosition(col-1);
+        	//	plantsState.eliminarZombie(row, col-1);
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row, col-1, PercepcionPlanta.PERCEPCION_VACIO);
-        		environmentState.setPosicionAgente(new int[] {row, col-1});
+        		//environmentState.setPosicionAgente(new int[] {row, col-1});
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        		environmentState.setCantidadZombie(environmentState.getCantidadZombie()-1);
         	//	environmentState.eliminarZombie(row,col-1);
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
             	return environmentState;
@@ -187,7 +198,7 @@ public class AtacarZombie extends SearchAction {
         	else {
         		return null;
         	}
-        }
+        }*/
         else if(row<4 && plantsState.getmatrizPosition(row+1, col) >= PercepcionPlanta.PERCEPCION_ENEMIGO1
         		&& plantsState.getmatrizPosition(row+1, col) <= PercepcionPlanta.PERCEPCION_ENEMIGO5)
         {
@@ -198,10 +209,12 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row+1, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setRowPosition(row+1);
+        	//	plantsState.eliminarZombie(row+1, col);
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row+1, col, PercepcionPlanta.PERCEPCION_VACIO);
-        		environmentState.setPosicionAgente(new int[] {row+1, col});
+        		//environmentState.setPosicionAgente(new int[] {row+1, col});
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        		environmentState.setCantidadZombie(environmentState.getCantidadZombie()-1);
         	//	environmentState.eliminarZombie(row+1,col);
         		
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
@@ -221,10 +234,12 @@ public class AtacarZombie extends SearchAction {
         		plantsState.setContadorZombie(plantsState.getContadorZombie()+1);
         		plantsState.setmatrizPosition(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
         		plantsState.setRowPosition(row-1);
+        	//	plantsState.eliminarZombie(row-1, col);
         		environmentState.setContadorZombie(plantsState.getContadorZombie());
         		environmentState.setMatriz(row-1, col, PercepcionPlanta.PERCEPCION_VACIO);
-        		environmentState.setPosicionAgente(new int[] {row-1, col});
+        		//environmentState.setPosicionAgente(new int[] {row-1, col});
         		environmentState.setCantidadSoles(plantsState.getCantidadSol());
+        		environmentState.setCantidadZombie(environmentState.getCantidadZombie()-1);
         	//	environmentState.eliminarZombie(row-1,col);
             	
         	//	System.out.println("\n Agente State: "+plantsState+"\n");
